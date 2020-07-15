@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>黎明的脚印</title>
+  
+  <subtitle>快与慢</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://godweiyang.com/"/>
+  <updated>2020-07-15T17:03:14.449Z</updated>
+  <id>https://godweiyang.com/</id>
+  
+  <author>
+    <name>lendea</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VIM编辑器</title>
+    <link href="https://godweiyang.com/2020/02/16/vim/"/>
+    <id>https://godweiyang.com/2020/02/16/vim/</id>
+    <published>2020-02-16T07:09:23.000Z</published>
+    <updated>2020-07-15T17:03:14.449Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;vi是一个命令行界面下的文本编辑工具，最早在1976年由bill
+        
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="https://godweiyang.com/categories/linux/"/>
+    
+    
+      <category term="vim" scheme="https://godweiyang.com/tags/vim/"/>
+    
+      <category term="linux" scheme="https://godweiyang.com/tags/linux/"/>
+    
+  </entry>
+  
+</feed>
