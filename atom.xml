@@ -5,9 +5,9 @@
   <subtitle>快与慢</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://godweiyang.com/"/>
-  <updated>2020-07-15T17:03:14.449Z</updated>
-  <id>https://godweiyang.com/</id>
+  <link href="https://lendea.cn/"/>
+  <updated>2020-07-16T04:02:23.180Z</updated>
+  <id>https://lendea.cn/</id>
   
   <author>
     <name>lendea</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>VIM编辑器</title>
-    <link href="https://godweiyang.com/2020/02/16/vim/"/>
-    <id>https://godweiyang.com/2020/02/16/vim/</id>
+    <link href="https://lendea.cn/2020/02/16/vim/"/>
+    <id>https://lendea.cn/2020/02/16/vim/</id>
     <published>2020-02-16T07:09:23.000Z</published>
-    <updated>2020-07-15T17:03:14.449Z</updated>
+    <updated>2020-07-16T04:02:23.180Z</updated>
     
     <summary type="html">
     
@@ -35,12 +35,12 @@
     
     </summary>
     
-      <category term="linux" scheme="https://godweiyang.com/categories/linux/"/>
+      <category term="linux" scheme="https://lendea.cn/categories/linux/"/>
     
     
-      <category term="vim" scheme="https://godweiyang.com/tags/vim/"/>
+      <category term="vim" scheme="https://lendea.cn/tags/vim/"/>
     
-      <category term="linux" scheme="https://godweiyang.com/tags/linux/"/>
+      <category term="linux" scheme="https://lendea.cn/tags/linux/"/>
     
   </entry>
   
