@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lendea.cn/2020/07/20/gradle-dependencied/</loc>
+    
+    <lastmod>2020-07-20T15:53:45.284Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lendea.cn/2020/07/20/python-macos/</loc>
     
-    <lastmod>2020-07-20T14:53:23.002Z</lastmod>
+    <lastmod>2020-07-20T15:01:38.289Z</lastmod>
     
   </url>
   
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://lendea.cn/categories/index.html</loc>
+    <loc>https://lendea.cn/archives/index.html</loc>
     
     <lastmod>2020-07-15T16:21:18.789Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://lendea.cn/archives/index.html</loc>
+    <loc>https://lendea.cn/categories/index.html</loc>
     
     <lastmod>2020-07-15T16:21:18.789Z</lastmod>
     

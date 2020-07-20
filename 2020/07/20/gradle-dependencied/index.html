@@ -4,11 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="VIM编辑器, 技术，记录，学习，生活">
+    <meta name="keywords" content="Gradle依赖(dependencies)类型, 技术，记录，学习，生活">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="简介vi是一个命令行界面下的文本编辑工具，最早在1976年由bill joy开发，当时名字叫做ex,vi支持大多数操作系统（最早在BSD上发布），并且功能已经十分强大。1991年bram基于vi进行了改进，发布了vim,加入了GUI的支持。">
+    <meta name="description" content="简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
+dependencies {
+    testImplementation &#34;org.spr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>VIM编辑器 | 黎明的脚印</title>
+    <title>Gradle依赖(dependencies)类型 | 黎明的脚印</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -266,13 +268,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        VIM编辑器
+                        Gradle依赖(dependencies)类型
                     </div>
                 </div>
             </div>
@@ -383,12 +385,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/vim/" target="_blank">
-                            <span class="chip bg-color">vim</span>
-                        </a>
-                        
-                        <a href="/tags/linux/" target="_blank">
-                            <span class="chip bg-color">linux</span>
+                        <a href="/tags/gradle/" target="_blank">
+                            <span class="chip bg-color">gradle</span>
                         </a>
                         
                     </div>
@@ -399,8 +397,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/linux/" class="post-category" target="_blank">
-                            linux
+                        <a href="/categories/gradle/" class="post-category" target="_blank">
+                            gradle
                         </a>
                         
                     </div>
@@ -411,7 +409,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-16
+                    2020-07-20
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -425,14 +423,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    687
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    2 分
                 </div>
                 
                 
@@ -448,39 +446,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>vi是一个命令行界面下的文本编辑工具，最早在1976年由bill joy开发，当时名字叫做ex,vi支持大多数操作系统（最早在BSD上发布），并且功能已经十分强大。1991年bram基于vi进行了改进，发布了vim,加入了GUI的支持。<br>当前vim已经不仅仅是普通意义上的文本编辑器（如window上的记事本），而是被广泛的作为在文本编辑，文本处理，代码开发等用途。<br>Linux中知名的文本编辑器还有emacs,它的功能比vim还要强大。<br>绝大数Linux系统上均安装vim，vim比vi的功能更为强大。<br>vim命令可以启动vim编辑器<br>一般我们使用vim+目标文件路径的形式使用vim<br>如果目标文件存在，则vim打开文件，如果目标文件不存在，则vim新建并打开该文件</p>
-<h2 id="四种模式"><a href="#四种模式" class="headerlink" title="四种模式"></a>四种模式</h2><h3 id="normal模式"><a href="#normal模式" class="headerlink" title="normal模式"></a>normal模式</h3><p>vim启动后，默认进入normal模式，任何模式都可以通过esc键回到normal模式（可以按几次）。normal模式下可以通过键入不同的命令完成选择，复制，粘贴，撤销等等操作。</p>
-<p><strong>进入插入模式：</strong><br> i（insert）: 在光标前插入文本<br>o (open a line below): 在当前行的下面插入新行<br>a (append):追加，在当前光标后插入<br>A：在行最后位置插入<br>I：  在行最前的位置插入<br>O：在当前编辑位置的上面新起一行</p>
-<p><strong>移动：</strong><br>h:左<br>j:下<br>k:上<br>l:右</p>
-<p><strong>在单词之间移动：</strong><br>w/W 移到下一个word/WORD开头，<br>e/E 下一个word/WORD结尾<br>b/B 回到上一个word/WORD开头 backword<br>word指的是以非空白符分割的单词，WORD指的是以空白符分割的单词。</p>
-<p><strong>行间搜索移动：</strong><br>同一行快速移动的方式其实是搜索一个字符并且移动到该字符<br>使用f{char}可以移动到char字符上，t移动到char的前一个字符<br>如果第一次没有搜到，可以用分号；/逗号，继续搜该行下一个/上一个。<br>大写的F表示反过来搜前面的字符</p>
-<p><strong>vim 水平移动：</strong><br>0移动到行首第一个字符<br>^移动到第一个非空白字符<br>$移动到行尾<br>g_移动到行尾非空白字符</p>
-<p><strong>vim垂直移动：</strong><br>在句子sentence和段落paragraph间移动<br>使用括号（）在句子间移动<br>使用{}在段落之间移动<br>使用easy-montion插件移动。</p>
-<p><strong>vim 页面移动：</strong><br>gg/G移动到文件开头和结尾<br>ctrl+o快速返回。<br>H/M/L 跳转到屏幕的开头head,中间middle，结尾lower<br>ctrl+u ctrl+f上下翻页，upword/forword<br>zz把屏幕置为中间。</p>
-<p><strong>删除：</strong><br>    x:删除当前光标所在的一个字符<br>    .:再次删除一个字符<br>    N<command>:<br>        10x：删除10个连续字符<br>        3dd：删除三行文本<br>    dw:删除一个单词，dnw，n换为数字，删除n个单词</p>
-<p><strong>行间跳转：</strong><br>                nG(c shift+g)： 游标移动到第几行<br>                gg：游标移动第一行<br>                G(shift+g) ：游标移动到最后一行<br>                ctrl+o : 快速回到上一次光标所在位置<br>                ~:将游标所在字母变成大写</p>
-<p><strong>复制和粘贴：</strong><br>             yy将当前行的内容放入缓冲区（复制游标所在的整行，3yy表示复制3行）<br>                y^ 复制至行首，或y0。不含光标所在处字符。<br>                y$ 复制至行尾。含光标所在处字符。<br>                yw 复制一个单词。<br>                y2w 复制两个单词。<br>                yG 复制至文本末。<br>                y1G 复制至文本开头。<br>                p将缓冲区中的文本放入光标后（粘贴）<br>                p(小写)代表粘贴至光标后（下）<br>                P(大写)代表粘贴至光标前（上）<br>        dd:剪切<br>        p:粘贴<br>        ddp:交换上下行位置</p>
-<p><strong>查找和替换(undo命令)：</strong></p>
-<p>r+&lt;代替换字母&gt;：将游标所在字母替换为指定字母<br>R    连续替换，直到按下Esc<br>cc    替换整行，即删除游标所在行，并进入插入模式<br>cw    替换一个单词，即删除一个单词，并进入插入模式<br>C(大写)    替换游标以后至行末<br>~    反转游标所在字母大小写</p>
-<p><strong>撤销：</strong><br>u{n}    撤销一次或n次操作<br>U(大写)    撤销当前行的所有修改<br>Ctrl+r    redo，即撤销undo的操作</p>
-<p><strong>快速缩进：</strong><br>        &gt;&gt; 整行将向右缩进<br>        &lt;&lt; 整行向左回退<br>        :set shiftwidth?  获取目前设定值<br>        :set shiftwidth=10 设置缩进为10个字符<br>命令行模式下输入<br>                                :ri(right)命令使本行文本靠右<br>                                :ce(center)命令使本行内容居中<br>                                le(left)命令使本行内容靠左</p>
-<p><strong>快速查找：</strong><br>        / string  然后回车查找字符串string<br>        n  查找下一个string<br>        ? tcp 向上查找字符串tcp<br>        N 查找上一个出现的tcp<br>        命令模式下输入 noh 回车取消搜索</p>
-<pre><code>    普通模式下输入\*寻找游标所在处的单词
-    普通模式下输入\#同上，但 \# 是向前（上）找，\*则是向后（下）找
-    普通模式下输入g\*同\* ，但部分符合该单词即可
-    普通模式下输入g\#同\# ，但部分符合该单词即可</code></pre><h3 id="insert模式"><a href="#insert模式" class="headerlink" title="insert模式"></a>insert模式</h3><pre><code> 命令模式 按i 即可进入插入模式，在插入模式中可以输入编辑文本内容，按esc键可以返回命令模式</code></pre><p><strong>如何快速纠错</strong>：<br> ctrl+h 删除上一个字符<br> ctrl+w 删除上一个单词<br> ctrl+u 删除当前行</p>
-<p><strong>快速切换normal和insert</strong><br>esc,ctrl+c,ctrl+[<br>gi快速跳转到你最后一次编辑的地方并进入插入模式。<br>如何映射方便的快捷键来替代esc</p>
-<h3 id="command模式"><a href="#command模式" class="headerlink" title="command模式"></a>command模式</h3><pre><code> 在normal模式中按“：”进入command模式，光标会移动到底部，在这里可以保存，修改或退出vim
-    :w  write保存当前修改
-    :q  quit退出
-    :wq write quit 保存退出
-    :q!  quit!强制退出
-    :x 保存并退出
-    :set nu    显示行号
-    :! 系统命令 执行一个系统命令并显示结果
-    :sh  切换到命令行，使用ctrl+d切换回vim
-    :vs(vertical split),sp(split) 分屏
- :% s/java/python/g 全局替换 java替换为python</code></pre><h3 id="visual-可视-模式"><a href="#visual-可视-模式" class="headerlink" title="visual(可视)模式"></a>visual(可视)模式</h3><p>visua模式一般用来块状选择文本，normal模式下使用v进入visual选择。使用V选择行。使用ctrl+v进行块状选择。</p>
+                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。</p>
+<pre class="line-numbers language-gradle"><code class="language-gradle">dependencies {
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
+    compile group: 'com.github.xiaoymin', name: 'knife4j-spring-ui', version: '2.0.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    api 'com.squareup.okhttp3:okhttp:3.14.7'
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="dependencies类型"><a href="#dependencies类型" class="headerlink" title="dependencies类型"></a>dependencies类型</h2><p>ependencies的类型可以分为以下几种</p>
+<ul>
+<li><p>compile</p>
+<ol>
+<li>testCompile</li>
+<li>debugCompile</li>
+<li>releaseCompile</li>
+<li>compileOnly</li>
+</ol>
+</li>
+<li><p>implementation</p>
+<ol>
+<li>testImplementation</li>
+<li>debugImplementation</li>
+<li>releaseImplementation    </li>
+</ol>
+</li>
+<li><p>provided</p>
+</li>
+<li><p>api</p>
+</li>
+</ul>
+<h3 id="compile"><a href="#compile" class="headerlink" title="compile"></a>compile</h3><p>从依赖上讲，用compile修饰的配置会传递依赖，而大多数的依赖冲突都是由compile产生的，什么是传递依赖？<br>打个比方：我们现在有libA，然后libB用compile依赖libA，最后libC依赖libB。那这个时候，libC自然能够使用libA的内容，因为libA的内容跟随这个libB而传递到了libC中。<br><img src="0CA30198-6E91-4D8E-A268-5637657A34B2.png" alt><br>而且compile得越多，所产生的依赖树也就越长，也就越难控制。</p>
+<p>从编译上讲，使用compile配置的依赖项，会跟随打包流程将源码打包到apk中。</p>
+<p>这两个依赖项配置和compile是差不多的，也会产生传递依赖，唯一不同的是，testcompile和androidTestcompile不会参与源码打包，只会参与测试包的打包，并且只有在测试模式下启动才会生效，debug和release包不生效。</p>
+<p>debugCompile和releaseCompile</p>
+<p>debugCompile<br>只在buildType为debug的时候参与打包，release不参与打包，比方说我们的内存泄露检测工具-LeakCanary，其实我们也只是需要在debug模式下打包调试，而发布release版本就需要进行打包了，所以用debugCompile来进行配置<br>releaseCompile<br>releaseCompile和debugCompile完全相反，只在release模式下参与打包，应用场景不是很多。</p>
+<h3 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h3><p>implementation 是Gradle4.1(Android studio3.0)新增的依赖方式，implementation和compile不同，该依赖方式不会产生传递依赖，implementation有点像provided和、debugCompile和releaseCompile的集合体。<br>来个具体场景，例如：有libA公共库，libB通过implementation依赖libB，然后app无论通过什么方式依赖libB，lib1的依赖都不会传递过来，必须要在app中重新依赖一次。如下图：<br><img src="3B26A415-589E-4EE9-95E6-EAD19543E16B.png" alt><br>使用implementation有什么好处呢？</p>
+<p>很大程度减少重复依赖的问题<br>在开源 lib 的时候尽量采用implementation的方式依赖一些v4、v7包</p>
+<h3 id="provided"><a href="#provided" class="headerlink" title="provided"></a>provided</h3><p>只参与编译，不参与打包。例如说有libB依赖了libA，moduleC又同时依赖了libA和libB，那么libB就可以使用provided来依赖libA。</p>
+<h3 id="api"><a href="#api" class="headerlink" title="api"></a>api</h3><p>api是Gradle4.1新增的依赖方式,其作用于compile基本一致。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 对于使用Gradle plugin 3.X以上版本的gradle，我们应该转而使用implementation，减少compile的使用，避免依赖冲突的产生。如果我们有开放的lib，那么更加应该使用implementation导入依赖，尽量少给lib的使用者造成困扰。</p>
 
             </div>
             <hr />
@@ -639,9 +645,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《VIM编辑器》
+                    《Gradle依赖(dependencies)类型》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/16/vim/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/20/gradle-dependencied/" property="cc:attributionName"
                rel="cc:attributionURL">
                 lendea
             </a> 采用
@@ -682,7 +688,7 @@
         repo: 'lendea.github.io',
         owner: 'lendea',
         admin: ,
-        id: '2020/02/16/vim/',
+        id: '2020/07/20/gradle-dependencied/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -965,9 +971,62 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/07/20/gradle-dependencied/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="Gradle依赖(dependencies)类型">
+                        
+                        <span class="card-title">Gradle依赖(dependencies)类型</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
+dependencies {
+    testImplementation "org.spr
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/gradle/" class="post-category" target="_blank">
+                                    gradle
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/gradle/" target="_blank">
+                        <span class="chip bg-color">gradle</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/07/20/python-macos/">
                     <div class="card-image">
@@ -987,9 +1046,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1015,60 +1074,6 @@
                     
                     <a href="/tags/macos/" target="_blank">
                         <span class="chip bg-color">macos</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/02/16/vim/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="VIM编辑器">
-                        
-                        <span class="card-title">VIM编辑器</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            VIM编辑器常用用法，持续更新
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/linux/" class="post-category" target="_blank">
-                                    linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/vim/" target="_blank">
-                        <span class="chip bg-color">vim</span>
-                    </a>
-                    
-                    <a href="/tags/linux/" target="_blank">
-                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>

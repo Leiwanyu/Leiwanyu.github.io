@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lendea.cn/"/>
-  <updated>2020-07-20T14:53:23.002Z</updated>
+  <updated>2020-07-20T15:53:45.284Z</updated>
   <id>https://lendea.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>macos Python 版本问题</title>
-    <link href="https://lendea.cn/2020/07/20/python-macos/"/>
-    <id>https://lendea.cn/2020/07/20/python-macos/</id>
-    <published>2020-07-20T14:49:48.000Z</published>
-    <updated>2020-07-20T14:53:23.002Z</updated>
+    <title>Gradle依赖(dependencies)类型</title>
+    <link href="https://lendea.cn/2020/07/20/gradle-dependencied/"/>
+    <id>https://lendea.cn/2020/07/20/gradle-dependencied/</id>
+    <published>2020-07-20T15:41:20.000Z</published>
+    <updated>2020-07-20T15:53:45.284Z</updated>
     
     <summary type="html">
     
@@ -29,8 +29,34 @@
       
         
         
-          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;macos系统自带的python2.7，但是2020年python2.7已经不再维护，因此我们需要升级到3.0以上。&lt;/p&gt;
-&lt;h2
+          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="gradle" scheme="https://lendea.cn/categories/gradle/"/>
+    
+    
+      <category term="gradle" scheme="https://lendea.cn/tags/gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>macos Python 版本问题</title>
+    <link href="https://lendea.cn/2020/07/20/python-macos/"/>
+    <id>https://lendea.cn/2020/07/20/python-macos/</id>
+    <published>2020-07-20T14:49:48.000Z</published>
+    <updated>2020-07-20T15:01:38.289Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;macos系统自带的python2.7，但是2020年python2.7已经不再维护，因此我们需要升级到3.0以上。&lt;/p&gt;
+&lt;h1
         
       
     
