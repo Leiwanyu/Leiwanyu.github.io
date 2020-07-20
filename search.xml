@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>macos Python 版本问题</title>
+      <link href="/2020/07/20/python-macos/"/>
+      <url>/2020/07/20/python-macos/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>macos系统自带的python2.7，但是2020年python2.7已经不再维护，因此我们需要升级到3.0以上。</p><h2 id="查看已安装python版本"><a href="#查看已安装python版本" class="headerlink" title="查看已安装python版本"></a>查看已安装python版本</h2><p><code>python -V</code></p><h2 id="安装路径"><a href="#安装路径" class="headerlink" title="安装路径"></a>安装路径</h2><p>不同方式安装有不同的安装路径：<br>系统默认<br><code>/System/Library/Frameworks/Python.framework/Versions/2.7</code></p><p>brew 安装<br><code>/usr/local/Cellar/python</code></p><p>官网pkg安装   <code>/Library/Frameworks/Python.framework/Versions/3.7</code></p><h2 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h2><p>升级python主要有两种方法</p><h3 id="使用Mac自带的包管理工具brew"><a href="#使用Mac自带的包管理工具brew" class="headerlink" title="使用Mac自带的包管理工具brew"></a>使用Mac自带的包管理工具brew</h3><p><code>brew upgrade python</code></p><h3 id="下载安装包升级"><a href="#下载安装包升级" class="headerlink" title="下载安装包升级"></a>下载安装包升级</h3><p>python官网下载 地址：<a href="https://www.python.org/downloads/" target="_blank" rel="noopener">https://www.python.org/downloads/</a></p><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>使用软链接，把终端中的python和pip，指定为我们下载后的python3和pip3。这可以通过修改环境来实现<br>打开环境变量：根据自己的安装方式，找到安装目录，添加进环境。</p><pre class="line-numbers language-shell"><code class="language-shell">open ~/.bash.profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><pre class="line-numbers language-vim"><code class="language-vim">alias python3<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>Cellar<span class="token operator">/</span><span class="token keyword">python</span>@<span class="token number">3.8</span><span class="token operator">/</span><span class="token number">3.8</span><span class="token operator">.</span><span class="token number">2</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>python3<span class="token operator">.</span><span class="token number">8</span>alias python2<span class="token operator">=</span><span class="token operator">/</span>System<span class="token operator">/</span>Library<span class="token operator">/</span>Frameworks<span class="token operator">/</span>Python<span class="token operator">.</span>framework<span class="token operator">/</span>Versions<span class="token operator">/</span><span class="token number">2.7</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>python2<span class="token operator">.</span><span class="token number">7</span>alias <span class="token keyword">python</span><span class="token operator">=</span>python3alias pip<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>Cellar<span class="token operator">/</span><span class="token keyword">python</span>@<span class="token number">3.8</span><span class="token operator">/</span><span class="token number">3.8</span><span class="token operator">.</span><span class="token number">2</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>pip3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-shell"><code class="language-shell">source ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+          <category> macos </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> macos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>VIM编辑器</title>
       <link href="/2020/02/16/vim/"/>
       <url>/2020/02/16/vim/</url>

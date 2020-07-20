@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lendea.cn/"/>
-  <updated>2020-07-16T04:02:23.180Z</updated>
+  <updated>2020-07-20T14:53:23.002Z</updated>
   <id>https://lendea.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>macos Python 版本问题</title>
+    <link href="https://lendea.cn/2020/07/20/python-macos/"/>
+    <id>https://lendea.cn/2020/07/20/python-macos/</id>
+    <published>2020-07-20T14:49:48.000Z</published>
+    <updated>2020-07-20T14:53:23.002Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;macos系统自带的python2.7，但是2020年python2.7已经不再维护，因此我们需要升级到3.0以上。&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://lendea.cn/categories/python/"/>
+    
+      <category term="macos" scheme="https://lendea.cn/categories/python/macos/"/>
+    
+    
+      <category term="python" scheme="https://lendea.cn/tags/python/"/>
+    
+      <category term="macos" scheme="https://lendea.cn/tags/macos/"/>
+    
+  </entry>
   
   <entry>
     <title>VIM编辑器</title>
