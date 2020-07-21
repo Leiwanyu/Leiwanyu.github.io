@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lendea.cn/2020/07/21/gradle-jar-conclict/</loc>
+    
+    <lastmod>2020-07-21T06:18:27.879Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lendea.cn/2020/07/20/gradle-dependencied/</loc>
     
-    <lastmod>2020-07-20T15:53:45.284Z</lastmod>
+    <lastmod>2020-07-21T02:55:27.605Z</lastmod>
     
   </url>
   

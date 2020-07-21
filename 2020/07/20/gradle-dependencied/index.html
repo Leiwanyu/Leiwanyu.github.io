@@ -268,7 +268,7 @@ dependencies {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,7 +423,7 @@ dependencies {
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    687
+                    684
                 </div>
                 
 
@@ -478,11 +478,11 @@ dependencies {
 </li>
 </ul>
 <h3 id="compile"><a href="#compile" class="headerlink" title="compile"></a>compile</h3><p>从依赖上讲，用compile修饰的配置会传递依赖，而大多数的依赖冲突都是由compile产生的，什么是传递依赖？<br>打个比方：我们现在有libA，然后libB用compile依赖libA，最后libC依赖libB。那这个时候，libC自然能够使用libA的内容，因为libA的内容跟随这个libB而传递到了libC中。<br><img src="0CA30198-6E91-4D8E-A268-5637657A34B2.png" alt><br>而且compile得越多，所产生的依赖树也就越长，也就越难控制。</p>
-<p>从编译上讲，使用compile配置的依赖项，会跟随打包流程将源码打包到apk中。</p>
-<p>这两个依赖项配置和compile是差不多的，也会产生传递依赖，唯一不同的是，testcompile和androidTestcompile不会参与源码打包，只会参与测试包的打包，并且只有在测试模式下启动才会生效，debug和release包不生效。</p>
+<p>从编译上讲，使用compile配置的依赖项，会跟随打包流程将源码打包到jar中。</p>
+<p>这两个依赖项配置和compile是差不多的，也会产生传递依赖，唯一不同的是，testcompile和<br>Testcompile不会参与源码打包，只会参与测试包的打包，并且只有在测试模式下启动才会生效，debug和release包不生效。</p>
 <p>debugCompile和releaseCompile</p>
 <p>debugCompile<br>只在buildType为debug的时候参与打包，release不参与打包，比方说我们的内存泄露检测工具-LeakCanary，其实我们也只是需要在debug模式下打包调试，而发布release版本就需要进行打包了，所以用debugCompile来进行配置<br>releaseCompile<br>releaseCompile和debugCompile完全相反，只在release模式下参与打包，应用场景不是很多。</p>
-<h3 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h3><p>implementation 是Gradle4.1(Android studio3.0)新增的依赖方式，implementation和compile不同，该依赖方式不会产生传递依赖，implementation有点像provided和、debugCompile和releaseCompile的集合体。<br>来个具体场景，例如：有libA公共库，libB通过implementation依赖libB，然后app无论通过什么方式依赖libB，lib1的依赖都不会传递过来，必须要在app中重新依赖一次。如下图：<br><img src="3B26A415-589E-4EE9-95E6-EAD19543E16B.png" alt><br>使用implementation有什么好处呢？</p>
+<h3 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h3><p>implementation 是Gradle4.1新增的依赖方式，implementation和compile不同，该依赖方式不会产生传递依赖，implementation有点像provided和、debugCompile和releaseCompile的集合体。<br>来个具体场景，例如：有libA公共库，libB通过implementation依赖libB，然后app无论通过什么方式依赖libB，lib1的依赖都不会传递过来，必须要在app中重新依赖一次。如下图：<br><img src="3B26A415-589E-4EE9-95E6-EAD19543E16B.png" alt><br>使用implementation有什么好处呢？</p>
 <p>很大程度减少重复依赖的问题<br>在开源 lib 的时候尽量采用implementation的方式依赖一些v4、v7包</p>
 <h3 id="provided"><a href="#provided" class="headerlink" title="provided"></a>provided</h3><p>只参与编译，不参与打包。例如说有libB依赖了libA，moduleC又同时依赖了libA和libB，那么libB就可以使用provided来依赖libA。</p>
 <h3 id="api"><a href="#api" class="headerlink" title="api"></a>api</h3><p>api是Gradle4.1新增的依赖方式,其作用于compile基本一致。</p>
@@ -971,32 +971,30 @@ dependencies {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/20/gradle-dependencied/">
+                <a href="/2020/07/21/gradle-jar-conclict/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="Gradle依赖(dependencies)类型">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Gradle 如何定位和解决依赖冲突">
                         
-                        <span class="card-title">Gradle依赖(dependencies)类型</span>
+                        <span class="card-title">Gradle 如何定位和解决依赖冲突</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
-dependencies {
-    testImplementation "org.spr
+                            介绍在开发过程中，我们不仅要引入我们其他项目的jar包，同时随着业务的复杂度加深，也免不了要引入许多的第三方开源库，那么不可避免的会出现依赖冲突的错误。
+如何定位依赖冲突排除法排除法很简单，但是很耗时，就是选择一个依赖一个依赖的注释、编译、
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1009,7 +1007,6 @@ dependencies {
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1032,7 +1029,7 @@ dependencies {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="macos Python 版本问题">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="macos Python 版本问题">
                         
                         <span class="card-title">macos Python 版本问题</span>
                     </div>
@@ -1247,7 +1244,7 @@ dependencies {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">2.5k</span>
+            <span class="white-color">4.5k</span>
             
 
             <br>
