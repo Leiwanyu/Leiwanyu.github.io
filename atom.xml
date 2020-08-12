@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lendea.cn/"/>
-  <updated>2020-07-21T06:18:27.879Z</updated>
+  <updated>2020-08-12T03:46:09.077Z</updated>
   <id>https://lendea.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>面向对象的理解</title>
+    <link href="https://lendea.cn/2020/08/12/object-oritened-feature/"/>
+    <id>https://lendea.cn/2020/08/12/object-oritened-feature/</id>
+    <published>2020-08-12T03:40:50.000Z</published>
+    <updated>2020-08-12T03:46:09.077Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;面向对象的理解&quot;&gt;&lt;a href=&quot;#面向对象的理解&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="编程方法论" scheme="https://lendea.cn/categories/%E7%BC%96%E7%A8%8B%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+    
+    
+      <category term="面向对象" scheme="https://lendea.cn/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="编程方法" scheme="https://lendea.cn/tags/%E7%BC%96%E7%A8%8B%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Gradle 如何定位和解决依赖冲突</title>

@@ -4,13 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gradle依赖(dependencies)类型, 技术，记录，学习，生活">
+    <meta name="keywords" content="面向对象的理解, 技术，记录，学习，生活">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
-dependencies {
-    testImplementation &#34;org.spr">
+    <meta name="description" content="面向对象的理解面向对象是一种编程风格，可以实现很多复杂的设计思路，是设计原则和设计模式编码实现的基础。
+抽象抽象是一个很宽泛的名词，从大方面上讲，我们需要以面向对象的方式先抽象出业务对象，然后抽象出其属性和行为，最后进行封装。小的方面就是具">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@ dependencies {
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Gradle依赖(dependencies)类型 | 黎明的脚印</title>
+    <title>面向对象的理解 | 黎明的脚印</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -268,13 +267,13 @@ dependencies {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Gradle依赖(dependencies)类型
+                        面向对象的理解
                     </div>
                 </div>
             </div>
@@ -385,8 +384,12 @@ dependencies {
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/gradle/" target="_blank">
-                            <span class="chip bg-color">gradle</span>
+                        <a href="/tags/面向对象/" target="_blank">
+                            <span class="chip bg-color">面向对象</span>
+                        </a>
+                        
+                        <a href="/tags/编程方法/" target="_blank">
+                            <span class="chip bg-color">编程方法</span>
                         </a>
                         
                     </div>
@@ -397,8 +400,8 @@ dependencies {
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/gradle/" class="post-category" target="_blank">
-                            gradle
+                        <a href="/categories/编程方法论/" class="post-category" target="_blank">
+                            编程方法论
                         </a>
                         
                     </div>
@@ -409,7 +412,7 @@ dependencies {
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-20
+                    2020-08-12
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -423,7 +426,7 @@ dependencies {
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    684
+                    749
                 </div>
                 
 
@@ -446,47 +449,11 @@ dependencies {
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle">dependencies {
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
-    compile group: 'com.github.xiaoymin', name: 'knife4j-spring-ui', version: '2.0.1'
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    api 'com.squareup.okhttp3:okhttp:3.14.7'
-
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="dependencies类型"><a href="#dependencies类型" class="headerlink" title="dependencies类型"></a>dependencies类型</h2><p>ependencies的类型可以分为以下几种</p>
-<ul>
-<li><p>compile</p>
-<ol>
-<li>testCompile</li>
-<li>debugCompile</li>
-<li>releaseCompile</li>
-<li>compileOnly</li>
-</ol>
-</li>
-<li><p>implementation</p>
-<ol>
-<li>testImplementation</li>
-<li>debugImplementation</li>
-<li>releaseImplementation    </li>
-</ol>
-</li>
-<li><p>provided</p>
-</li>
-<li><p>api</p>
-</li>
-</ul>
-<h3 id="compile"><a href="#compile" class="headerlink" title="compile"></a>compile</h3><p>从依赖上讲，用compile修饰的配置会传递依赖，而大多数的依赖冲突都是由compile产生的，什么是传递依赖？<br>打个比方：我们现在有libA，然后libB用compile依赖libA，最后libC依赖libB。那这个时候，libC自然能够使用libA的内容，因为libA的内容跟随这个libB而传递到了libC中。<br><img src="0CA30198-6E91-4D8E-A268-5637657A34B2.png" alt><br>而且compile得越多，所产生的依赖树也就越长，也就越难控制。</p>
-<p>从编译上讲，使用compile配置的依赖项，会跟随打包流程将源码打包到jar中。</p>
-<p>这两个依赖项配置和compile是差不多的，也会产生传递依赖，唯一不同的是，testcompile和<br>Testcompile不会参与源码打包，只会参与测试包的打包，并且只有在测试模式下启动才会生效，debug和release包不生效。</p>
-<p>debugCompile和releaseCompile</p>
-<p>debugCompile<br>只在buildType为debug的时候参与打包，release不参与打包，比方说我们的内存泄露检测工具-LeakCanary，其实我们也只是需要在debug模式下打包调试，而发布release版本就需要进行打包了，所以用debugCompile来进行配置<br>releaseCompile<br>releaseCompile和debugCompile完全相反，只在release模式下参与打包，应用场景不是很多。</p>
-<h3 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h3><p>implementation 是Gradle4.1新增的依赖方式，implementation和compile不同，该依赖方式不会产生传递依赖，implementation有点像provided和、debugCompile和releaseCompile的集合体。<br>来个具体场景，例如：有libA公共库，libB通过implementation依赖libB，然后app无论通过什么方式依赖libB，lib1的依赖都不会传递过来，必须要在app中重新依赖一次。如下图：<br><img src="3B26A415-589E-4EE9-95E6-EAD19543E16B.png" alt><br>使用implementation有什么好处呢？</p>
-<p>很大程度减少重复依赖的问题<br>在开源 lib 的时候尽量采用implementation的方式依赖一些v4、v7包</p>
-<h3 id="provided"><a href="#provided" class="headerlink" title="provided"></a>provided</h3><p>只参与编译，不参与打包。例如说有libB依赖了libA，moduleC又同时依赖了libA和libB，那么libB就可以使用provided来依赖libA。</p>
-<h3 id="api"><a href="#api" class="headerlink" title="api"></a>api</h3><p>api是Gradle4.1新增的依赖方式,其作用于compile基本一致。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 对于使用Gradle plugin 3.X以上版本的gradle，我们应该转而使用implementation，减少compile的使用，避免依赖冲突的产生。如果我们有开放的lib，那么更加应该使用implementation导入依赖，尽量少给lib的使用者造成困扰。</p>
+                <h1 id="面向对象的理解"><a href="#面向对象的理解" class="headerlink" title="面向对象的理解"></a>面向对象的理解</h1><p>面向对象是一种编程风格，可以实现很多复杂的设计思路，是设计原则和设计模式编码实现的基础。</p>
+<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p>抽象是一个很宽泛的名词，从大方面上讲，我们需要以面向对象的方式先抽象出业务对象，然后抽象出其属性和行为，最后进行封装。小的方面就是具体函数方法实现的抽象，他体现在接口类和抽象类上，调用者不需要理解具体实现，只需要知道自己调用的方法目的是什么即可。</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>封装主要功能是信息隐藏和数据访问控制。<br>java是面向的对象的语言。项目是对功能代码的封装，包是对类的封装，类是对对象数据属性或行为的封装，变量是对属性的封装，函数是对行为的封装，通过不同的控制访问修饰符，去规范变量和行为的使用范围。<br>在使用方法或一些开源项目适合，不需要知道具体的实现方法，只要知道他实现了什么功能就可以了，简化了我们的工作<br>具体的封装需要对设计模式和设计原则有一定的认识，合理的使用抽象类，接口，类，并组织他们之间的关系有助于提高代码的可扩展性。</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>在对对象进行封装的同时，也要对其进行组织，合理的组织能提高代码的可复用性和可扩展性，而继承就是这样一个工具。将共性抽取出去形成父类，差异形成子类。更好的组织代码。<br>此处需要注意一个原则，里氏替换原则。当一个子类调用一个方法时，换成父类，程序逻辑不变。这是为了降低复杂度。<br>当继承是为了代码复用的时候，那么就不要覆盖父类的方法，子类只能通过自增方法实现功能。<br>当继承是为了实现多态的时候，父类最好是是抽象类和接口，通过实现父类的方法进行实现。<br>继承太多会使类结构复杂，可读性和维护性降低，代码复用也可以使用组合来实现。多用组合，少用继承。</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>子类可以替换父类，在实际代码运行过程中，调用字类的方法实现。<br>多态简单的说分为静态多态和动态多态，静态多态是方法的重载，动态多态是方法的重写。一句话概括就是，相同的引用调用相同的方法实现不同的功能，这是因为子类的各自的实现原因。它主要是为应对变化而生。可提高代码的可维护性，可扩展性。</p>
 
             </div>
             <hr />
@@ -645,9 +612,9 @@ dependencies {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Gradle依赖(dependencies)类型》
+                    《面向对象的理解》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/20/gradle-dependencied/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/12/object-oritened-feature/" property="cc:attributionName"
                rel="cc:attributionURL">
                 lendea
             </a> 采用
@@ -688,7 +655,7 @@ dependencies {
         repo: 'lendea.github.io',
         owner: 'lendea',
         admin: ,
-        id: '2020/07/20/gradle-dependencied/',
+        id: '2020/08/12/object-oritened-feature/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -971,9 +938,65 @@ dependencies {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/08/12/object-oritened-feature/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="面向对象的理解">
+                        
+                        <span class="card-title">面向对象的理解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            面向对象的理解面向对象是一种编程风格，可以实现很多复杂的设计思路，是设计原则和设计模式编码实现的基础。
+抽象抽象是一个很宽泛的名词，从大方面上讲，我们需要以面向对象的方式先抽象出业务对象，然后抽象出其属性和行为，最后进行封装。小的方面就是具
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/编程方法论/" class="post-category" target="_blank">
+                                    编程方法论
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/面向对象/" target="_blank">
+                        <span class="chip bg-color">面向对象</span>
+                    </a>
+                    
+                    <a href="/tags/编程方法/" target="_blank">
+                        <span class="chip bg-color">编程方法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/07/21/gradle-jar-conclict/">
                     <div class="card-image">
@@ -992,9 +1015,9 @@ dependencies {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1012,65 +1035,6 @@ dependencies {
                     
                     <a href="/tags/gradle/" target="_blank">
                         <span class="chip bg-color">gradle</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/07/20/python-macos/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="macos Python 版本问题">
-                        
-                        <span class="card-title">macos Python 版本问题</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            简介macos系统自带的python2.7，但是2020年python2.7已经不再维护，因此我们需要升级到3.0以上。
-查看已安装python版本python -V
-安装路径不同方式安装有不同的安装路径：系统默认/System/Libra
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/python/" class="post-category" target="_blank">
-                                    python
-                                </a>
-                            
-                            <a href="/categories/python/macos/" class="post-category" target="_blank">
-                                    macos
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/python/" target="_blank">
-                        <span class="chip bg-color">python</span>
-                    </a>
-                    
-                    <a href="/tags/macos/" target="_blank">
-                        <span class="chip bg-color">macos</span>
                     </a>
                     
                 </div>
