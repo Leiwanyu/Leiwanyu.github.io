@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gradle 如何定位和解决依赖冲突, 技术，记录，学习，生活">
+    <meta name="keywords" content="Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？, 技术，记录，学习，生活">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="介绍在开发过程中，我们不仅要引入我们其他项目的jar包，同时随着业务的复杂度加深，也免不了要引入许多的第三方开源库，那么不可避免的会出现依赖冲突的错误。
-如何定位依赖冲突排除法排除法很简单，但是很耗时，就是选择一个依赖一个依赖的注释、编译、">
+    <meta name="description" content="背景开发生产中，有时候我们会碰到告警，CPU过高，超过100%，这个时候我们应该怎么办？
+解决方案java进程导致CPU过高定位耗费CPU的进程top -c命令,显示进程列表。然后输入P(大写),按照CPU排序。如果是Java进程引起的CP">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Gradle 如何定位和解决依赖冲突 | 黎明的脚印</title>
+    <title>Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？ | 黎明的脚印</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +267,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Gradle 如何定位和解决依赖冲突
+                        Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？
                     </div>
                 </div>
             </div>
@@ -384,8 +384,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/gradle/" target="_blank">
-                            <span class="chip bg-color">gradle</span>
+                        <a href="/tags/运维/" target="_blank">
+                            <span class="chip bg-color">运维</span>
+                        </a>
+                        
+                        <a href="/tags/面试/" target="_blank">
+                            <span class="chip bg-color">面试</span>
                         </a>
                         
                     </div>
@@ -396,8 +400,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/gradle/" class="post-category" target="_blank">
-                            gradle
+                        <a href="/categories/运维/" class="post-category" target="_blank">
+                            运维
                         </a>
                         
                     </div>
@@ -408,7 +412,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-21
+                    2020-11-13
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -422,14 +426,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    312
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    1 分
                 </div>
                 
                 
@@ -445,232 +449,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在开发过程中，我们不仅要引入我们其他项目的jar包，同时随着业务的复杂度加深，也免不了要引入许多的第三方开源库，那么不可避免的会出现依赖冲突的错误。</p>
-<h2 id="如何定位依赖冲突"><a href="#如何定位依赖冲突" class="headerlink" title="如何定位依赖冲突"></a>如何定位依赖冲突</h2><h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>排除法很简单，但是很耗时，就是选择一个依赖一个依赖的注释、编译、看结果。</p>
-<h3 id="IDEA-gradle可视化"><a href="#IDEA-gradle可视化" class="headerlink" title="IDEA gradle可视化"></a>IDEA gradle可视化</h3><p>idea给我们提供了一个依赖树，但树只是一个平面图，并不是十分的直观。<br><img src="5C266554-7D51-4A1F-9F22-11F05CF908F7.png" alt></p>
-<h3 id="Gradle-Task"><a href="#Gradle-Task" class="headerlink" title="Gradle Task"></a>Gradle Task</h3><p>Gradle提供了一个task：dependencies，这个task能在命令行中显示依赖树之间的依赖关系。双击执行后就能在命令行中打印相关的依赖信息了.可以看到不同的buildType的信息<br><img src="A158B8C5-DE3C-4375-B120-380F66118503.png" alt><br>除了UI点击之外，也可通过命令行的方式来获取依赖树。</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle"># implementation 指定的buildType信息
-./gradlew app:dependencies -q --configuration implementation
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>这里我提取一点：</p>
-<pre class="line-numbers language-shell"><code class="language-shell">annotationProcessor - Annotation processors and their dependencies for source set 'main'.
-\--- org.projectlombok:lombok:1.18.4
-apiElements - API elements for main. (n)
-No dependencies
-
-archives - Configuration for archive artifacts.
-No dependencies
-
-asciidoctor
-+--- org.springframework.restdocs:spring-restdocs-asciidoctor -> 2.0.2.RELEASE
-+--- org.asciidoctor:asciidoctorj:1.5.3.2
-|    +--- org.jruby:jruby-complete:1.7.21
-|    \--- com.beust:jcommander:1.35
-\--- org.asciidoctor:asciidoctorj-groovy-dsl:1.0.0.preview2
-     +--- org.codehaus.groovy:groovy-all:1.8.9
-     \--- org.asciidoctor:asciidoctorj:1.5.1 -> 1.5.3.2 (*)
-
-bootArchives - Configuration for Spring Boot archive artifacts.
-No dependencies
-implementation - Implementation only dependencies for source set 'main'. (n)
-+--- project mbg-model (n)
-+--- project mbg-mapper (n)
-+--- project cmp-client (n)
-compileOnly - Compile only dependencies for source set 'main'.
-+--- org.springframework.boot:spring-boot-configuration-processor -> 2.1.1.RELEASE
-\--- org.projectlombok:lombok:1.18.4
-
-default - Configuration for default artifacts.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-+--- io.springside:springside-utils:5.0.0-RC1
-|    +--- com.google.guava:guava:20.0 -> 23.0
-|    |    +--- com.google.code.findbugs:jsr305:1.3.9 -> 3.0.1
-|    |    +--- com.google.errorprone:error_prone_annotations:2.0.18
-|    |    +--- com.google.j2objc:j2objc-annotations:1.1
-|    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.14
-|    +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-|    \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-compile - Dependencies for source set 'main' (deprecated, use 'implementation' instead).
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-\--- io.springside:springside-utils:5.0.0-RC1
-     +--- com.google.guava:guava:20.0
-     +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-     \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-
-compileClasspath - Compile classpath for source set 'main'.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-+--- io.springside:springside-utils:5.0.0-RC1
-|    +--- com.google.guava:guava:20.0 -> 23.0
-|    |    +--- com.google.code.findbugs:jsr305:1.3.9 -> 2.0.1
-|    |    +--- com.google.errorprone:error_prone_annotations:2.0.18
-|    |    +--- com.google.j2objc:j2objc-annotations:1.1
-|    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.14
-|    +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-|    \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-+--- org.springframework.boot:spring-boot-configuration-processor -> 2.1.1.RELEASE
-+--- org.projectlombok:lombok:1.18.4
-runtimeElements - Elements of runtime for main. (n)
-No dependencies
-
-runtimeOnly - Runtime only dependencies for source set 'main'. (n)
-No dependencies
-
-testAnnotationProcessor - Annotation processors and their dependencies for source set 'test'.
-\--- org.projectlombok:lombok:1.18.4
-
-testCompile - Dependencies for source set 'test' (deprecated, use 'testImplementation' instead).
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-\--- io.springside:springside-utils:5.0.0-RC1
-     +--- com.google.guava:guava:20.0
-     +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-     \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-
-testCompileClasspath - Compile classpath for source set 'test'.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-+--- io.springside:springside-utils:5.0.0-RC1
-|    +--- com.google.guava:guava:20.0 -> 23.0
-|    |    +--- com.google.code.findbugs:jsr305:1.3.9 -> 2.0.1
-|    |    +--- com.google.errorprone:error_prone_annotations:2.0.18
-|    |    +--- com.google.j2objc:j2objc-annotations:1.1
-|    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.14
-|    +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-|    \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-testCompileOnly - Compile only dependencies for source set 'test'.
-\--- org.projectlombok:lombok:1.18.4
-
-testImplementation - Implementation only dependencies for source set 'test'. (n)
-+--- org.springframework.boot:spring-boot-starter-test (n)
-+--- org.mybatis.spring.boot:mybatis-spring-boot-starter-test:1.3.2 (n)
-\--- org.springframework.restdocs:spring-restdocs-mockmvc (n)
-
-testRuntime - Runtime dependencies for source set 'test' (deprecated, use 'testRuntimeOnly' instead).
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- org.jsoup:jsoup:1.13.1
-\--- io.springside:springside-utils:5.0.0-RC1
-     +--- com.google.guava:guava:20.0
-     +--- org.apache.commons:commons-lang3:3.5 -> 3.8.1
-     \--- org.slf4j:slf4j-api:1.7.22 -> 1.7.25
-testRuntimeClasspath - Runtime classpath of source set 'test'.
-+--- com.github.xiaoymin:knife4j-spring-ui:2.0.1
-+--- cn.ucloud.ufile:ufile-client-java:2.3.0 (*)
-+--- io.kubernetes:client-java:5.0.0 (*)
-+--- org.glassfish.jersey.core:jersey-client:2.11 (*)
-+--- org.glassfish.jersey.media:jersey-media-json-jackson:2.11 (*)
-+--- org.glassfish.jersey.core:jersey-common:2.11 (*)
-+--- org.apache.commons:commons-lang3:3.8.1
-+--- com.github.penggle:kaptcha:2.3.2
-|    +--- javax.servlet:javax.servlet-api:3.1.0 -> 4.0.1
-|    \--- com.jhlabs:filters:2.0.235-1
-+--- com.google.guava:guava:23.0 (*)
-+--- com.alibaba:fastjson:1.2.54
-+--- com.alibaba:druid-spring-boot-starter:1.1.10
-|    +--- com.alibaba:druid:1.1.10
-|    +--- org.slf4j:slf4j-api:1.7.25
-|    \--- org.springframework.boot:spring-boot-autoconfigure:1.5.12.RELEASE -> 2.1.1.RELEASE (*)
-+--- io.projectreactor:reactor-core:3.2.8.RELEASE
-|    \--- org.reactivestreams:reactive-streams:1.0.2
-+--- org.apache.poi:poi-ooxml:3.17
-|    +--- org.apache.poi:poi:3.17
-|    |    +--- commons-codec:commons-codec:1.10 -> 1.11
-|    |    \--- org.apache.commons:commons-collections4:4.1
-|    +--- org.apache.poi:poi-ooxml-schemas:3.17
-|    |    \--- org.apache.xmlbeans:xmlbeans:2.6.0
-|    |         \--- stax:stax-api:1.0.1
-|    \--- com.github.virtuald:curvesapi:1.04
-+--- com.squareup.okhttp3:okhttp:3.14.7 (*)
-+--- mysql:mysql-connector-java:6.0.6
-+--- org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2 (*)
-+--- com.qcloud:cos_api:5.6.0 (*)
-+--- com.github.pagehelper:pagehelper-spring-boot-starter:1.2.10 (*)
-+--- tk.mybatis:mapper-spring-boot-starter:2.1.5
-|    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    +--- org.springframework.boot:spring-boot-starter-jdbc:2.1.1.RELEASE (*)
-|    +--- org.mybatis:mybatis:3.4.6
-|    +--- org.mybatis:mybatis-spring:1.3.2
-|    +--- tk.mybatis:mapper-core:1.1.5
-|    |    \--- javax.persistence:persistence-api:1.0
-|    +--- tk.mybatis:mapper-base:1.1.5
-|    |    \--- javax.persistence:persistence-api:1.0
-|    +--- tk.mybatis:mapper-weekend:1.1.5
-|    +--- tk.mybatis:mapper-spring:1.1.5
-|    +--- tk.mybatis:mapper-extra:1.1.5
-|    +--- tk.mybatis:mapper-spring-boot-autoconfigure:2.1.5
-|    |    +--- org.springframework.boot:spring-boot-autoconfigure:2.1.1.RELEASE (*)
-|    |    +--- junit:junit:4.12 (*)
-|    |    \--- org.hsqldb:hsqldb:2.4.1
-|    +--- junit:junit:4.12 (*)
-|    \--- org.hsqldb:hsqldb:2.4.1
-+--- org.springframework.boot:spring-boot-devtools -> 2.1.1.RELEASE
-|    +--- org.springframework.boot:spring-boot:2.1.1.RELEASE (*)
-|    \--- org.springframework.boot:spring-boot-autoconfigure:2.1.1.RELEASE (*)
-+--- org.springframework.boot:spring-boot-starter-web -> 2.1.1.RELEASE
-|    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    +--- org.springframework.boot:spring-boot-starter-json:2.1.1.RELEASE
-|    |    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    |    +--- org.springframework:spring-web:5.1.3.RELEASE (*)
-|    |    +--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.7
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.9.7
-|    |    |    \--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.7
-|    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.9.0
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.9.7
-|    |    |    \--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.7
-|    |         +--- com.fasterxml.jackson.core:jackson-core:2.9.7
-|    |         \--- com.fasterxml.jackson.core:jackson-databind:2.9.7 (*)
-|    +--- org.springframework.boot:spring-boot-starter-tomcat:2.1.1.RELEASE
-|    |    +--- javax.annotation:javax.annotation-api:1.3.2
-|    |    +--- org.apache.tomcat.embed:tomcat-embed-core:9.0.13
-|    |    +--- org.apache.tomcat.embed:tomcat-embed-el:9.0.13
-|    |    \--- org.apache.tomcat.embed:tomcat-embed-websocket:9.0.13
-|    |         \--- org.apache.tomcat.embed:tomcat-embed-core:9.0.13
-|    +--- org.hibernate.validator:hibernate-validator:6.0.13.Final (*)
-|    +--- org.springframework:spring-web:5.1.3.RELEASE (*)
-|    \--- org.springframework:spring-webmvc:5.1.3.RELEASE
-|         +--- org.springframework:spring-aop:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-beans:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-context:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-core:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-expression:5.1.3.RELEASE (*)
-|         \--- org.springframework:spring-web:5.1.3.RELEASE (*)
-+--- org.springframework.boot:spring-boot-starter-amqp -> 2.1.1.RELEASE
-|    +--- org.springframework.boot:spring-boot-starter:2.1.1.RELEASE (*)
-|    +--- org.springframework:spring-messaging:5.1.3.RELEASE
-|    |    +--- org.springframework:spring-beans:5.1.3.RELEASE (*)
-|    |    \--- org.springframework:spring-core:5.1.3.RELEASE (*)
-|    \--- org.springframework.amqp:spring-rabbit:2.1.2.RELEASE
-|         +--- org.springframework.amqp:spring-amqp:2.1.2.RELEASE
-|         |    +--- org.springframework:spring-core:5.1.3.RELEASE (*)
-|         |    \--- org.springframework.retry:spring-retry:1.2.2.RELEASE
-|         |         \--- org.springframework:spring-core:4.3.13.RELEASE -> 5.1.3.RELEASE (*)
-|         +--- com.rabbitmq:amqp-client:5.4.3
-|         |    \--- org.slf4j:slf4j-api:1.7.25
-|         +--- org.springframework:spring-context:5.1.3.RELEASE (*)
-|         +--- org.springframework:spring-messaging:5.1.3.RELEASE (*)
-|         \--- org.springframework:spring-tx:5.1.3.RELEASE (*)
-testRuntimeOnly - Runtime only dependencies for source set 'test'. (n)
-No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="使用插件gradle-view"><a href="#使用插件gradle-view" class="headerlink" title="使用插件gradle-view"></a>使用插件gradle-view</h3><p>利用插件gradle-view可以直接通过面板的形式看到是哪个依赖库，具体是冲突了哪个版本。</p>
-<p>插件地址：<a href="https://plugins.jetbrains.com/plugin/7150-gradle-view" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/7150-gradle-view</a><br><img src="7CBE789B-24EF-490D-90CF-DA06919E8C62.png" alt></p>
-<h2 id="如何解决冲突"><a href="#如何解决冲突" class="headerlink" title="如何解决冲突"></a>如何解决冲突</h2><h3 id="删除其中一个jar包"><a href="#删除其中一个jar包" class="headerlink" title="删除其中一个jar包"></a>删除其中一个jar包</h3><p>删除其中一个jar包。</p>
-<h3 id="使用exclude来去除传递依赖"><a href="#使用exclude来去除传递依赖" class="headerlink" title="使用exclude来去除传递依赖"></a>使用exclude来去除传递依赖</h3><p>在知道是哪个库的哪些依赖的情况下,可以使用exclude来去除传递依赖，<br>        exclude module：过滤模块<br>        exclude group：过滤包名下所有依赖</p>
-<p>如下：</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle">implementation("com.qcloud:cos_api:5.6.0") {
-        exclude group: 'org.slf4j'
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="取消所有传递依赖"><a href="#取消所有传递依赖" class="headerlink" title="取消所有传递依赖"></a>取消所有传递依赖</h3><pre class="line-numbers language-gradle"><code class="language-gradle">configurations.all {
-   transitive = false
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="强制依赖"><a href="#强制依赖" class="headerlink" title="强制依赖"></a>强制依赖</h3><p>对冲突的jar强行制定一个版本</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle">gradleconfigurations.all {
-    resolutionStrategy.force "com.amazonaws:aws-java-sdk-bom:1.11.698"
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>开发生产中，有时候我们会碰到告警，CPU过高，超过100%，这个时候我们应该怎么办？</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="java进程导致CPU过高"><a href="#java进程导致CPU过高" class="headerlink" title="java进程导致CPU过高"></a>java进程导致CPU过高</h3><h4 id="定位耗费CPU的进程"><a href="#定位耗费CPU的进程" class="headerlink" title="定位耗费CPU的进程"></a>定位耗费CPU的进程</h4><p><code>top -c</code>命令,显示进程列表。然后输入P(大写),按照CPU排序。<br><img src="49D3D198-C786-4A88-AE17-30EAF6CFE578.png" alt><br>如果是Java进程引起的CPU偏高，然后分析为什么这个Java进程对应的线程。进而找到原因。</p>
+<h4 id="定位耗费CPU的线程"><a href="#定位耗费CPU的线程" class="headerlink" title="定位耗费CPU的线程"></a>定位耗费CPU的线程</h4><p><code>top -Hp 进程ID</code>，输入P按照CPU排序。<br><img src="589EC661-44B6-492A-B1B2-6AE71BB007E2.png" alt></p>
+<h4 id="定位哪段代码导致CPU过高"><a href="#定位哪段代码导致CPU过高" class="headerlink" title="定位哪段代码导致CPU过高"></a>定位哪段代码导致CPU过高</h4><p><code>printf &quot;%x\n&quot; 线程ID</code> 把线程pid转换为16进制。<br><img src="DD7F696C-FBEB-4925-BD84-FD6FB267022F.png" alt><br>然后用jstack命令打印进程的堆栈信息，通过grep那个线程的16进制pid，找到那个线程相关的东西。在打印的对战信息中，查找是哪个类的哪个方法导致的CPU 100%的问题。然后去解决问题。<br><code>jstack 进程ID ｜ grep &#39;0x16进制线程ID&#39; -C5 --color</code><br><img src="810E40C9-706F-4950-9D3F-49BC088E012B.png" alt><br>最后得知是代码中存在死循环导致的（测试使用，要是想让CPU跑的更满，可以启用自己CPU一致的线程数，分别死循环）：<br><img src="230B3B03-8067-4628-BBF0-4FEACADFCF27.png" alt></p>
+<p>修改代码，解决问题。</p>
+<p>注意：<br>在编写代码时候，注意循环条件推出方式</p>
 
             </div>
             <hr />
@@ -829,9 +613,9 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Gradle 如何定位和解决依赖冲突》
+                    《Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/21/gradle-jar-conclict/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/11/13/java-process-cpu-100/" property="cc:attributionName"
                rel="cc:attributionURL">
                 lendea
             </a> 采用
@@ -872,7 +656,7 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
         repo: 'lendea.github.io',
         owner: 'lendea',
         admin: ,
-        id: '2020/07/21/gradle-jar-conclict/',
+        id: '2020/11/13/java-process-cpu-100/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1159,6 +943,57 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/11/13/trojan-process-cpu-100/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="记录一次木马进程导致CPU 700%处理经过">
+                        
+                        <span class="card-title">记录一次木马进程导致CPU 700%处理经过</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            事件描述登陆到测试服务器，发现CPU使用率飙到了700%，可能是机器被攻击。看进程名称，是一个异常进程在搞怪。
+处理过程
+为了让机器尽快恢复，用kill -9 18616杀掉了这个进程。没想到一会儿进程又出现了，CPU继续飙升。猜测应该是有
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/运维/" class="post-category" target="_blank">
+                                    运维
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/运维/" target="_blank">
+                        <span class="chip bg-color">运维</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/08/12/object-oritened-feature/">
                     <div class="card-image">
                         
@@ -1176,9 +1011,9 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1200,57 +1035,6 @@ No dependencies<span aria-hidden="true" class="line-numbers-rows"><span></span><
                     
                     <a href="/tags/编程方法/" target="_blank">
                         <span class="chip bg-color">编程方法</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/07/20/gradle-dependencied/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Gradle依赖(dependencies)类型">
-                        
-                        <span class="card-title">Gradle依赖(dependencies)类型</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
-dependencies {
-    testImplementation "org.spr
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/gradle/" class="post-category" target="_blank">
-                                    gradle
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/gradle/" target="_blank">
-                        <span class="chip bg-color">gradle</span>
                     </a>
                     
                 </div>
