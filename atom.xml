@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lendea.cn/"/>
-  <updated>2020-11-13T09:53:24.095Z</updated>
+  <updated>2021-02-24T13:54:44.717Z</updated>
   <id>https://lendea.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java多线程基础概念</title>
+    <link href="https://lendea.cn/2021/02/24/thread-base/"/>
+    <id>https://lendea.cn/2021/02/24/thread-base/</id>
+    <published>2021-02-24T13:41:04.000Z</published>
+    <updated>2021-02-24T13:54:44.717Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;h3 id=&quot;CPU核心数和线程数的关系&quot;&gt;&lt;a href=&quot;#CPU核心数和线程数的关系&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://lendea.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://lendea.cn/tags/Java/"/>
+    
+      <category term="多线程" scheme="https://lendea.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>记录一次木马进程导致CPU 700%处理经过</title>
