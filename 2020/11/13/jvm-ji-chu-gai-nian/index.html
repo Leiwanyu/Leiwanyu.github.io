@@ -4,12 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gradle依赖(dependencies)类型, 技术，记录，学习，生活">
+    <meta name="keywords" content="JVM基础概念, 技术，记录，学习，生活">
     <meta name="baidu-site-verification" content="code-ZydIOljOwi">
    <meta name="google-site-verification" content="DbHyB6RDQKKevcw93UX4Y9JkjVaXrTRJAi2FAIg9TPM">
-    <meta name="description" content="简介dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。
-dependencies {
-    testImplementation &#34;org.spr">
+    <meta name="description" content="JVM基础概念什么是JVMJVM:Java virtual machine，Java虚拟机，它是一种规范。是虚构出来的一台计算机。它可以将二进制字节码根据不同的操作系统转为当前操作系统识别的的字节码指令（汇编语言），从而实现跨平台。并有很好">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +15,7 @@ dependencies {
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Gradle依赖(dependencies)类型 | 黎明的脚印</title>
+    <title>JVM基础概念 | 黎明的脚印</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +265,13 @@ dependencies {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Gradle依赖(dependencies)类型
+                        JVM基础概念
                     </div>
                 </div>
             </div>
@@ -384,8 +382,8 @@ dependencies {
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/gradle/" target="_blank">
-                            <span class="chip bg-color">gradle</span>
+                        <a href="/tags/JVM/" target="_blank">
+                            <span class="chip bg-color">JVM</span>
                         </a>
                         
                     </div>
@@ -396,8 +394,8 @@ dependencies {
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/gradle/" class="post-category" target="_blank">
-                            gradle
+                        <a href="/categories/Java/" class="post-category" target="_blank">
+                            Java
                         </a>
                         
                     </div>
@@ -408,7 +406,7 @@ dependencies {
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-20
+                    2020-11-13
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -422,14 +420,14 @@ dependencies {
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    684
+                    316
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
                 
@@ -445,47 +443,18 @@ dependencies {
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>dependencies用来配置当项目的依赖项。我们常常在gradle配置文件中看到api,implementation,compile……。</p>
-<pre class="line-numbers language-gradle"><code class="language-gradle">dependencies {
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
-    compile group: 'com.github.xiaoymin', name: 'knife4j-spring-ui', version: '2.0.1'
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    api 'com.squareup.okhttp3:okhttp:3.14.7'
-
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="dependencies类型"><a href="#dependencies类型" class="headerlink" title="dependencies类型"></a>dependencies类型</h2><p>ependencies的类型可以分为以下几种</p>
-<ul>
-<li><p>compile</p>
-<ol>
-<li>testCompile</li>
-<li>debugCompile</li>
-<li>releaseCompile</li>
-<li>compileOnly</li>
-</ol>
-</li>
-<li><p>implementation</p>
-<ol>
-<li>testImplementation</li>
-<li>debugImplementation</li>
-<li>releaseImplementation    </li>
-</ol>
-</li>
-<li><p>provided</p>
-</li>
-<li><p>api</p>
-</li>
+                <h1 id="JVM基础概念"><a href="#JVM基础概念" class="headerlink" title="JVM基础概念"></a>JVM基础概念</h1><h2 id="什么是JVM"><a href="#什么是JVM" class="headerlink" title="什么是JVM"></a>什么是JVM</h2><p><strong>JVM</strong>:Java virtual machine，Java虚拟机，它是一种规范。是虚构出来的一台计算机。它可以将二进制字节码根据不同的操作系统转为当前操作系统识别的的字节码指令（汇编语言），从而实现跨平台。并有很好的内存管理功能（分为栈、堆、方法区等。）<br>jvm发展到现在，已经不仅仅是Java语言的一部分，它已经建立了自己的生态圈。成为一个标准规范。任何语言只要能将其编译为class文件格式，那么都可以在JVM中运行。<br><a href="https://docs.oracle.com/javase/specs/jvms/se14/html/index.html" target="_blank" rel="noopener">jvm规范：https://docs.oracle.com/javase/specs/jvms/se14/html/index.html</a><br><img src="C90B13EB-DF91-4F3A-80E1-7E679C85B8C0.png" alt><br><img src="804C4165-D727-4454-8F66-7EBBF10D5D9C.png" alt></p>
+<h3 id="Java从编码到执行"><a href="#Java从编码到执行" class="headerlink" title="Java从编码到执行"></a>Java从编码到执行</h3><p> <img src="071DCE9A-49F5-471C-89B2-E88E967901AF.png" alt><br> <img src="86466F65-5BBA-4CDF-8485-9C0A909E5A9E.png" alt></p>
+<h2 id="常见的JVM实现"><a href="#常见的JVM实现" class="headerlink" title="常见的JVM实现"></a>常见的JVM实现</h2><ul>
+<li>Hotspot<br>oracle官方提供的，现在jdk默认提供的jvm实现。我们安装了jdk之后，通过命令：java -version 可以看出来。<br><img src="C9C36F19-EB1F-4796-80D6-38FE236CA787.png" alt></li>
+<li>Jrockit<br>它是BEA公司出品，曾经号称世界上最快的JVM。后来被oracle收购，最终合并于hotspot。现在我们所使用的JVM是它们两个的结合。</li>
+<li>J9<br>IBM制作的JVM</li>
+<li>Microsoft VM</li>
+<li>Taobao VM(hotspot深度定制版)</li>
+<li>LinquidVM (直接针对硬件的JVM)</li>
+<li>azul zing (最新垃圾回收的顶级标杆，昂贵的费用)</li>
+<li>等等</li>
 </ul>
-<h3 id="compile"><a href="#compile" class="headerlink" title="compile"></a>compile</h3><p>从依赖上讲，用compile修饰的配置会传递依赖，而大多数的依赖冲突都是由compile产生的，什么是传递依赖？<br>打个比方：我们现在有libA，然后libB用compile依赖libA，最后libC依赖libB。那这个时候，libC自然能够使用libA的内容，因为libA的内容跟随这个libB而传递到了libC中。<br><img src="0CA30198-6E91-4D8E-A268-5637657A34B2.png" alt><br>而且compile得越多，所产生的依赖树也就越长，也就越难控制。</p>
-<p>从编译上讲，使用compile配置的依赖项，会跟随打包流程将源码打包到jar中。</p>
-<p>这两个依赖项配置和compile是差不多的，也会产生传递依赖，唯一不同的是，testcompile和<br>Testcompile不会参与源码打包，只会参与测试包的打包，并且只有在测试模式下启动才会生效，debug和release包不生效。</p>
-<p>debugCompile和releaseCompile</p>
-<p>debugCompile<br>只在buildType为debug的时候参与打包，release不参与打包，比方说我们的内存泄露检测工具-LeakCanary，其实我们也只是需要在debug模式下打包调试，而发布release版本就需要进行打包了，所以用debugCompile来进行配置<br>releaseCompile<br>releaseCompile和debugCompile完全相反，只在release模式下参与打包，应用场景不是很多。</p>
-<h3 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h3><p>implementation 是Gradle4.1新增的依赖方式，implementation和compile不同，该依赖方式不会产生传递依赖，implementation有点像provided和、debugCompile和releaseCompile的集合体。<br>来个具体场景，例如：有libA公共库，libB通过implementation依赖libB，然后app无论通过什么方式依赖libB，lib1的依赖都不会传递过来，必须要在app中重新依赖一次。如下图：<br><img src="3B26A415-589E-4EE9-95E6-EAD19543E16B.png" alt><br>使用implementation有什么好处呢？</p>
-<p>很大程度减少重复依赖的问题<br>在开源 lib 的时候尽量采用implementation的方式依赖一些v4、v7包</p>
-<h3 id="provided"><a href="#provided" class="headerlink" title="provided"></a>provided</h3><p>只参与编译，不参与打包。例如说有libB依赖了libA，moduleC又同时依赖了libA和libB，那么libB就可以使用provided来依赖libA。</p>
-<h3 id="api"><a href="#api" class="headerlink" title="api"></a>api</h3><p>api是Gradle4.1新增的依赖方式,其作用于compile基本一致。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 对于使用Gradle plugin 3.X以上版本的gradle，我们应该转而使用implementation，减少compile的使用，避免依赖冲突的产生。如果我们有开放的lib，那么更加应该使用implementation导入依赖，尽量少给lib的使用者造成困扰。</p>
 
             </div>
             <hr />
@@ -644,9 +613,9 @@ dependencies {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Gradle依赖(dependencies)类型》
+                    《JVM基础概念》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/20/gradle-dependencied/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/11/13/jvm-ji-chu-gai-nian/" property="cc:attributionName"
                rel="cc:attributionURL">
                 lendea
             </a> 采用
@@ -687,7 +656,7 @@ dependencies {
         repo: 'lendea.github.io',
         owner: 'lendea',
         admin: ,
-        id: '2020/07/20/gradle-dependencied/',
+        id: '2020/11/13/jvm-ji-chu-gai-nian/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -974,32 +943,32 @@ dependencies {
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/21/gradle-jar-conclict/">
+                <a href="/2020/11/13/jvm-lei-jia-zai-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Gradle 如何定位和解决依赖冲突">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="类加载器">
                         
-                        <span class="card-title">Gradle 如何定位和解决依赖冲突</span>
+                        <span class="card-title">类加载器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            介绍在开发过程中，我们不仅要引入我们其他项目的jar包，同时随着业务的复杂度加深，也免不了要引入许多的第三方开源库，那么不可避免的会出现依赖冲突的错误。
-如何定位依赖冲突排除法排除法很简单，但是很耗时，就是选择一个依赖一个依赖的注释、编译、
+                            简介我们一直都知道java源码经过编译，变为.class后缀名的字节码，经过类加载器加载进虚拟机，然后进行使用。那么我们有考虑过什么是类加载器，类加载器从哪儿加载，什么时候去加载，加载到哪里。本文将逐一解答这些问题。
+什么是类加载器类加载器
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-21
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-13
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/gradle/" class="post-category" target="_blank">
-                                    gradle
+                            <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
                                 </a>
                             
                             
@@ -1009,8 +978,8 @@ dependencies {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/gradle/" target="_blank">
-                        <span class="chip bg-color">gradle</span>
+                    <a href="/tags/JVM/" target="_blank">
+                        <span class="chip bg-color">JVM</span>
                     </a>
                     
                 </div>
@@ -1024,37 +993,32 @@ dependencies {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/20/python-macos/">
+                <a href="/2020/11/13/java-process-cpu-100/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="macos Python 版本问题">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？">
                         
-                        <span class="card-title">macos Python 版本问题</span>
+                        <span class="card-title">Java进程导致CPU使用达到了100%，如何排查，定位，解决该问题？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简介macos系统自带的python2.7，但是2020年python2.7已经不再维护，因此我们需要升级到3.0以上。
-查看已安装python版本python -V
-安装路径不同方式安装有不同的安装路径：系统默认/System/Libra
+                            背景开发生产中，有时候我们会碰到告警，CPU过高，超过100%，这个时候我们应该怎么办？
+解决方案java进程导致CPU过高定位耗费CPU的进程top -c命令,显示进程列表。然后输入P(大写),按照CPU排序。如果是Java进程引起的CP
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/python/" class="post-category" target="_blank">
-                                    python
-                                </a>
-                            
-                            <a href="/categories/python/macos/" class="post-category" target="_blank">
-                                    macos
+                            <a href="/categories/运维/" class="post-category" target="_blank">
+                                    运维
                                 </a>
                             
                             
@@ -1064,12 +1028,12 @@ dependencies {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python/" target="_blank">
-                        <span class="chip bg-color">python</span>
+                    <a href="/tags/运维/" target="_blank">
+                        <span class="chip bg-color">运维</span>
                     </a>
                     
-                    <a href="/tags/macos/" target="_blank">
-                        <span class="chip bg-color">macos</span>
+                    <a href="/tags/面试/" target="_blank">
+                        <span class="chip bg-color">面试</span>
                     </a>
                     
                 </div>

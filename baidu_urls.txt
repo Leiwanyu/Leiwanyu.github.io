@@ -1,6 +1,8 @@
-https://lendea.cn/2021/02/24/mou-shang-cheng-te-qu-qiang-gou-huo-dong-xing-neng-you-hua-shi-zhan/
 https://lendea.cn/2021/02/24/thread-base/
+https://lendea.cn/2021/02/24/mou-shang-cheng-te-qu-qiang-gou-huo-dong-xing-neng-you-hua-shi-zhan/
 https://lendea.cn/2020/11/13/trojan-process-cpu-100/
+https://lendea.cn/2020/11/13/jvm-lei-jia-zai-qi/
+https://lendea.cn/2020/11/13/jvm-ji-chu-gai-nian/
 https://lendea.cn/2020/11/13/java-process-cpu-100/
 https://lendea.cn/2020/08/12/object-oritened-feature/
 https://lendea.cn/2020/07/21/gradle-jar-conclict/
