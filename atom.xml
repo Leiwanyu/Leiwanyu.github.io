@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lendea.cn/"/>
-  <updated>2021-02-24T14:00:59.203Z</updated>
+  <updated>2021-03-02T03:35:00.168Z</updated>
   <id>https://lendea.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>工作思考</title>
+    <link href="https://lendea.cn/2021/03/02/thing-01/"/>
+    <id>https://lendea.cn/2021/03/02/thing-01/</id>
+    <published>2021-03-02T03:29:40.000Z</published>
+    <updated>2021-03-02T03:35:00.168Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;人生就是一个函数，你输入什么样的参数，那么就会返回什么样的结果。&lt;/p&gt;
+&lt;p&gt;既然选择了这行，那么便要风雨兼程&lt;/p&gt;
+&lt;p&gt;不断学习，不断进步。&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+      <category term="个人思考" scheme="https://lendea.cn/categories/%E4%B8%AA%E4%BA%BA%E6%80%9D%E8%80%83/"/>
+    
+    
+      <category term="随想" scheme="https://lendea.cn/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>Java多线程基础概念</title>
@@ -97,32 +126,6 @@
   </entry>
   
   <entry>
-    <title>类加载器</title>
-    <link href="https://lendea.cn/2020/11/13/jvm-lei-jia-zai-qi/"/>
-    <id>https://lendea.cn/2020/11/13/jvm-lei-jia-zai-qi/</id>
-    <published>2020-11-13T08:45:34.000Z</published>
-    <updated>2021-02-24T15:38:35.755Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="https://lendea.cn/categories/Java/"/>
-    
-    
-      <category term="JVM" scheme="https://lendea.cn/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
     <title>JVM基础概念</title>
     <link href="https://lendea.cn/2020/11/13/jvm-ji-chu-gai-nian/"/>
     <id>https://lendea.cn/2020/11/13/jvm-ji-chu-gai-nian/</id>
@@ -136,6 +139,32 @@
         
         
           &lt;h1 id=&quot;JVM基础概念&quot;&gt;&lt;a href=&quot;#JVM基础概念&quot; class=&quot;headerlink&quot; title=&quot;JVM基础概念&quot;&gt;&lt;/a&gt;JVM基础概念&lt;/h1&gt;&lt;h2 id=&quot;什么是JVM&quot;&gt;&lt;a href=&quot;#什么是JVM&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://lendea.cn/categories/Java/"/>
+    
+    
+      <category term="JVM" scheme="https://lendea.cn/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>类加载器</title>
+    <link href="https://lendea.cn/2020/11/13/jvm-lei-jia-zai-qi/"/>
+    <id>https://lendea.cn/2020/11/13/jvm-lei-jia-zai-qi/</id>
+    <published>2020-11-13T08:45:34.000Z</published>
+    <updated>2021-02-24T15:38:35.755Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
         
       
     
